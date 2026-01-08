@@ -1,0 +1,501 @@
+/* Custom theme overrides for Finternet branding */
+:root {
+  /* Colors */
+  --finternet-primary: #1B5EFE;
+  --finternet-primary-hover: #4A7EFF;
+  --finternet-secondary: #0D2A7D;
+  --finternet-accent: #00D1B2;
+  --finternet-bg: #0A0E17;
+  --finternet-bg-elevated: #0D1424;
+  --finternet-bg-hover: #111a30;
+  --finternet-text: #E6EAF2;
+  --finternet-text-muted: #C9D3EA;
+  --finternet-border: rgba(255, 255, 255, 0.1);
+  --finternet-border-light: rgba(255, 255, 255, 0.05);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body,
+.book,
+.book .book-body,
+.book .book-body .page-wrapper,
+.book .book-body .page-wrapper .page-inner,
+.markdown-section {
+  color: var(--finternet-text) !important;
+  background-color: var(--finternet-bg) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* Headings with better hierarchy and spacing */
+.markdown-section h1 {
+  color: #ffffff !important;
+  font-size: 2.5em !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.2em !important;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--finternet-border);
+  line-height: 1.3;
+}
+
+.markdown-section h2 {
+  color: #ffffff !important;
+  font-size: 2em !important;
+  font-weight: 600 !important;
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+  padding-top: 0.5em;
+  line-height: 1.4;
+}
+
+.markdown-section h3 {
+  color: #ffffff !important;
+  font-size: 1.5em !important;
+  font-weight: 600 !important;
+  margin-top: 1.8em !important;
+  margin-bottom: 0.8em !important;
+  line-height: 1.4;
+}
+
+.markdown-section h4 {
+  color: #ffffff !important;
+  font-size: 1.25em !important;
+  font-weight: 600 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.6em !important;
+}
+
+.markdown-section h5,
+.markdown-section h6 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  margin-top: 1.2em !important;
+  margin-bottom: 0.5em !important;
+}
+
+/* Body text with improved readability */
+.markdown-section p {
+  color: var(--finternet-text) !important;
+  margin-bottom: 1.2em !important;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.markdown-section li {
+  color: var(--finternet-text) !important;
+  margin-bottom: 0.6em;
+  line-height: 1.8;
+}
+
+.markdown-section ul,
+.markdown-section ol {
+  margin-bottom: 1.5em !important;
+  padding-left: 2em;
+}
+
+.markdown-section strong {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.markdown-section em {
+  color: var(--finternet-text) !important;
+  font-style: italic;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+
+.markdown-section a {
+  color: var(--finternet-primary) !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.markdown-section a:hover {
+  color: var(--finternet-primary-hover) !important;
+  border-bottom-color: var(--finternet-primary-hover);
+}
+
+.markdown-section a:visited {
+  color: #9db9ff !important;
+}
+
+.markdown-section a:focus {
+  outline: 2px solid var(--finternet-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
+/* Inline code */
+.markdown-section code {
+  background: #0F1628 !important;
+  color: #E6EAF2 !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Code blocks */
+.markdown-section pre {
+  background: #0F1628 !important;
+  color: #E6EAF2 !important;
+  padding: 1.5em !important;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--finternet-border);
+  overflow-x: auto;
+  margin: 1.5em 0 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.markdown-section pre code {
+  background: transparent !important;
+  color: #E6EAF2 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 0.9em;
+  line-height: 1.6;
+  display: block;
+}
+
+/* Syntax highlighting improvements */
+.markdown-section pre .hljs {
+  background: transparent !important;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+.markdown-section table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--finternet-border) !important;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.markdown-section table th {
+  background: #111a30 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 1em 1.2em !important;
+  text-align: left;
+  border-bottom: 2px solid var(--finternet-primary);
+  border-right: 1px solid var(--finternet-border);
+}
+
+.markdown-section table th:last-child {
+  border-right: none;
+}
+
+.markdown-section table td {
+  background: #0D1424 !important;
+  color: var(--finternet-text) !important;
+  padding: 0.9em 1.2em !important;
+  border-right: 1px solid var(--finternet-border-light);
+  border-bottom: 1px solid var(--finternet-border-light);
+}
+
+.markdown-section table td:last-child {
+  border-right: none;
+}
+
+.markdown-section table tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-section table tr:hover td {
+  background: var(--finternet-bg-hover) !important;
+  transition: background 0.2s ease;
+}
+
+.markdown-section table tr:nth-child(even) td {
+  background: #0f1829 !important;
+}
+
+.markdown-section table tr:nth-child(even):hover td {
+  background: var(--finternet-bg-hover) !important;
+}
+
+/* ============================================
+   BLOCKQUOTES / CALLOUTS
+   ============================================ */
+
+.markdown-section blockquote {
+  border-left: 4px solid var(--finternet-accent) !important;
+  background: rgba(0, 209, 178, 0.1) !important;
+  color: var(--finternet-text) !important;
+  padding: 1.2em 1.5em !important;
+  margin: 1.5em 0 !important;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.markdown-section blockquote p {
+  margin-bottom: 0.8em !important;
+}
+
+.markdown-section blockquote p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* ============================================
+   HORIZONTAL RULES
+   ============================================ */
+
+.markdown-section hr {
+  border: none !important;
+  border-top: 2px solid var(--finternet-border) !important;
+  margin: 2.5em 0 !important;
+  height: 0;
+}
+
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+
+.book .book-summary {
+  background: var(--finternet-bg-elevated);
+  border-right: 1px solid var(--finternet-border);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.book .book-summary .summary li a,
+.book .book-summary .summary li span {
+  color: var(--finternet-text-muted) !important;
+  padding: 0.75em 1em !important;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  margin: 2px 8px;
+}
+
+.book .book-summary .summary li.active > a {
+  color: var(--finternet-primary) !important;
+  background: rgba(27, 94, 254, 0.15) !important;
+  font-weight: 500;
+  border-left: 3px solid var(--finternet-primary);
+  padding-left: calc(1em - 3px) !important;
+}
+
+.book .book-summary .summary li a:hover {
+  background: rgba(27, 94, 254, 0.1) !important;
+  color: var(--finternet-primary) !important;
+}
+
+.book .book-summary .summary li.header {
+  color: var(--finternet-text-muted);
+  font-weight: 600;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1em;
+  padding: 1em 1em 0.5em 1em;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.book .book-header {
+  background: linear-gradient(90deg, var(--finternet-secondary) 0%, var(--finternet-primary) 100%);
+  color: #FFFFFF;
+  border-bottom: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  height: 50px;
+}
+
+.book .book-header .btn {
+  color: #FFFFFF;
+  transition: opacity 0.2s ease;
+}
+
+.book .book-header .btn:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   PAGE CONTENT
+   ============================================ */
+
+.page-inner {
+  max-width: 900px !important;
+  padding: 2.5em 2em 4em 2em !important;
+}
+
+.markdown-section {
+  max-width: 100%;
+}
+
+/* ============================================
+   SEARCH
+   ============================================ */
+
+#book-search-input {
+  background: var(--finternet-bg-elevated);
+  border-bottom: 1px solid var(--finternet-border);
+}
+
+#book-search-input input,
+#book-search-input input:focus,
+#book-search-input input:hover {
+  background: var(--finternet-bg-elevated) !important;
+  color: var(--finternet-text) !important;
+  border: 1px solid var(--finternet-border) !important;
+  border-radius: var(--radius-sm);
+  padding: 0.75em 1em !important;
+}
+
+.book .book-search .search-results {
+  background: var(--finternet-bg-elevated) !important;
+}
+
+.book .book-search .search-results .search-result-item {
+  border-bottom: 1px solid var(--finternet-border-light);
+  padding: 0.75em 1em;
+  transition: background 0.2s ease;
+}
+
+.book .book-search .search-results .search-result-item:hover {
+  background: rgba(27, 94, 254, 0.1) !important;
+}
+
+.book .book-search .search-results .search-result-item a {
+  color: var(--finternet-text) !important;
+}
+
+.book .book-search .search-results .search-result-item a:hover {
+  color: var(--finternet-primary) !important;
+}
+
+/* ============================================
+   MISC ELEMENTS
+   ============================================ */
+
+.markdown-section small {
+  color: var(--finternet-text-muted) !important;
+  font-size: 0.9em;
+}
+
+.markdown-section dt {
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+.markdown-section dd {
+  color: var(--finternet-text) !important;
+  margin-left: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: rgba(27, 94, 254, 0.4);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(27, 94, 254, 0.4);
+  color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE IMPROVEMENTS
+   ============================================ */
+
+@media screen and (max-width: 1240px) {
+  .page-inner {
+    padding: 2em 1.5em 3em 1.5em !important;
+  }
+  
+  .markdown-section h1 {
+    font-size: 2em !important;
+  }
+  
+  .markdown-section h2 {
+    font-size: 1.75em !important;
+  }
+  
+  .markdown-section table {
+    font-size: 0.9em;
+  }
+  
+  .markdown-section table th,
+  .markdown-section table td {
+    padding: 0.7em 1em !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page-inner {
+    padding: 1.5em 1em 2em 1em !important;
+  }
+  
+  .markdown-section pre {
+    padding: 1em !important;
+    font-size: 0.85em;
+  }
+  
+  .markdown-section table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--finternet-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--finternet-bg-hover);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--finternet-primary);
+}

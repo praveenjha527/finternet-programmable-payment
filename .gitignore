@@ -1,0 +1,28 @@
+# macOS system files
+.DS_Store
+
+# Node dependencies and logs
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# HonKit/GitBook build output
+_book/
+
+# Cache/temp directories
+.cache/
+.tmp/
+
+# Editor/project settings (keep local only)
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# OS-specific
+Thumbs.db

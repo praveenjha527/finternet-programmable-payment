@@ -1,0 +1,12 @@
+{
+  "title": "Finternet Docs",
+  "description": "Documentation for Finternet APIs, concepts, and guides",
+  "styles": {
+    "website": "styles/website.css"
+  },
+  "links": {
+    "website": [
+      { "rel": "icon", "type": "image/png", "href": "https://finternetlab.io/wp-content/uploads/2025/11/fnet-logo-black-300x76.png" }
+    ]
+  }
+}
