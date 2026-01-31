@@ -1,6 +1,6 @@
 # Payment Intents
 
-Payment intents are the core object in Finternet's API. They represent a request to collect payment from a payer and track the entire payment lifecycle.
+Payment Intent is the Core Object in the Finternet Payment Gateway’s Payment API. It facilitates the exchange and confirmation of payment information between buyer and merchant and also enables interaction with the smart modules that host the conditional payment logic.
 
 ## What is a Payment Intent?
 
