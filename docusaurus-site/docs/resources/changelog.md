@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `POST /v1/payment-intents/:id/escrow/milestones/:milestoneId/complete` - Complete milestone
 
 ### Payment Types
-- `CONSENTED_PULL` - Standard payment with payer consent
+- `CONDITIONAL` - Conditional payment with smart module logic
 - `DELIVERY_VS_PAYMENT` - Escrow-based payment with delivery verification
 
 ### Settlement Methods

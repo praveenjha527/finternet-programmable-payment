@@ -4,59 +4,9 @@ This guide explains the different payment flows available in Finternet and when 
 
 ## Payment Types Overview
 
-Finternet supports two main payment types:
+Finternet supports programmable payments with escrow protection:
 
-1. **CONSENTED_PULL** - Standard payment with payer consent
-2. **DELIVERY_VS_PAYMENT** - Escrow-based payment with delivery verification
-
-## CONSENTED_PULL Flow
-
-Simple payment flow for immediate transactions.
-
-### When to Use
-
-- Digital goods and services
-- Immediate delivery
-- Trusted merchant relationships
-- Subscription payments
-- One-time payments
-
-### Flow Diagram
-
-```
-1. Create Payment Intent
-   ↓
-2. Buyer Signs & Confirms
-   ↓
-3. Blockchain Transaction
-   ↓
-4. Payment Confirmed (5+ confirmations)
-   ↓
-5. Settlement Initiated
-   ↓
-6. Funds Sent to Merchant
-```
-
-### Code Example
-
-```typescript
-// Create payment intent
-const intent = await createPaymentIntent({
-  amount: '100.00',
-  currency: 'USDC',
-  type: 'CONSENTED_PULL',
-  settlementMethod: 'OFF_RAMP_MOCK',
-  settlementDestination: 'bank_account_123',
-});
-
-// Buyer confirms payment
-await confirmPaymentIntent(intent.id, {
-  signature: eip712Signature,
-  payerAddress: buyerAddress,
-});
-
-// Payment is confirmed and settled automatically
-```
+1. **DELIVERY_VS_PAYMENT** - Escrow-based payment with delivery verification
 
 ## DELIVERY_VS_PAYMENT Flow
 
@@ -124,52 +74,13 @@ Funds released incrementally as milestones are completed.
 
 ## Complete Flow Comparison
 
-| Aspect | CONSENTED_PULL | DELIVERY_VS_PAYMENT |
-|--------|----------------|---------------------|
-| **Speed** | Immediate | Delayed (until delivery) |
-| **Security** | Standard | Enhanced (escrow) |
-| **Use Case** | Digital goods | Physical goods |
-| **Buyer Protection** | Limited | High |
-| **Merchant Risk** | Low | Low (funds locked) |
-| **Settlement** | Immediate | After delivery proof |
+## Benefits of DELIVERY_VS_PAYMENT
 
-## Choosing the Right Flow
-
-### Use CONSENTED_PULL When:
-
-- ✅ Selling digital products
-- ✅ Providing immediate services
-- ✅ Have established trust with buyers
-- ✅ Need instant settlement
-- ✅ Low-value transactions
-
-### Use DELIVERY_VS_PAYMENT When:
-
-- ✅ Selling physical goods
-- ✅ High-value transactions
-- ✅ New merchant relationships
-- ✅ Need buyer protection
-- ✅ Custom delivery requirements
-
-## Hybrid Approaches
-
-You can combine payment types for different scenarios:
-
-### Subscription with Escrow
-
-```typescript
-// First payment: DvP for trust building
-const firstPayment = await createPaymentIntent({
-  type: 'DELIVERY_VS_PAYMENT',
-  // ...
-});
-
-// Subsequent payments: Consented Pull for speed
-const recurringPayment = await createPaymentIntent({
-  type: 'CONSENTED_PULL',
-  // ...
-});
-```
+- ✅ Enhanced security with escrow protection
+- ✅ Buyer protection through fund locking
+- ✅ Flexible release mechanisms
+- ✅ Dispute resolution support
+- ✅ Suitable for all transaction types
 
 ## Related
 

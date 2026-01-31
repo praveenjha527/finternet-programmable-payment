@@ -90,7 +90,7 @@ Returns a payment intent object if valid and accessible.
 | `status` | string | Current status (see [Status Lifecycle](concepts/status-lifecycle.md)) |
 | `amount` | string | Payment amount as a decimal string |
 | `currency` | string | Currency code (e.g., `USDC`) |
-| `type` | string | Payment type (`DELIVERY_VS_PAYMENT` or `CONSENTED_PULL`) |
+| `type` | string | Payment type (`DELIVERY_VS_PAYMENT` or `CONDITIONAL`) |
 | `settlementMethod` | string | Settlement method (e.g., `OFF_RAMP_MOCK`) |
 | `settlementDestination` | string | Destination for settlement (bank account, etc.) |
 | `settlementStatus` | string | Current settlement status |

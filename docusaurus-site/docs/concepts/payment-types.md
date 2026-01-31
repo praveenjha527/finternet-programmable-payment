@@ -136,33 +136,6 @@ curl https://api.finternet.com/v1/payment-intents/intent_xxx/escrow/milestones/m
 - Freelance services
 - Any transaction requiring delivery verification
 
-## Comparison
-
-### Consented Pull vs Delivery vs Payment
-
-| Feature | Consented Pull | Delivery vs Payment |
-|---------|----------------|---------------------|
-| **Escrow** | No | Yes |
-| **Release Timing** | Immediate | On delivery/time/milestone |
-| **Dispute Support** | Limited | Full support |
-| **Complexity** | Simple | More complex |
-| **Use Cases** | Digital, instant | Physical, services |
-| **Settlement Speed** | Fastest | Depends on release type |
-
-## Choosing the Right Type
-
-### Use Consented Pull if:
-- ✅ Product/service is delivered instantly
-- ✅ No delivery verification needed
-- ✅ You want fastest settlement
-- ✅ Simple payment flow
-
-### Use Delivery vs Payment if:
-- ✅ Physical goods need shipping
-- ✅ Services require completion verification
-- ✅ You need escrow protection
-- ✅ You want milestone-based payments
-- ✅ You need dispute resolution
 
 ## Next Steps
 

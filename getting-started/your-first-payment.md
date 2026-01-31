@@ -4,7 +4,7 @@ This guide walks you through creating and processing your first payment with Fin
 
 ## Overview
 
-We'll create a simple payment intent, confirm it, and track it through the complete lifecycle. This example uses a **Consented Pull** payment type, which is the simplest payment flow.
+We'll create a simple payment intent, confirm it, and track it through the complete lifecycle. This example uses a **Delivery vs Payment** payment type with escrow protection.
 
 ## Step 1: Create a Payment Intent
 
@@ -18,7 +18,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONSENTED_PULL",
+    "type": "DELIVERY_VS_PAYMENT",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "bank_account_123",
     "description": "Order #12345"
@@ -37,7 +37,7 @@ curl https://api.finternet.com/v1/payment-intents \
     "status": "INITIATED",
   "amount": "100.00",
   "currency": "USDC",
-  "type": "CONSENTED_PULL",
+  "type": "DELIVERY_VS_PAYMENT",
   "settlementMethod": "OFF_RAMP_MOCK",
   "settlementDestination": "bank_account_123",
   "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
@@ -45,7 +45,7 @@ curl https://api.finternet.com/v1/payment-intents \
   "typedData": {
     "types": {
       "EIP712Domain": [...],
-      "ConsentedPull": [...]
+      "DeliveryVsPayment": [...]
     },
     "domain": {...},
     "message": {...}

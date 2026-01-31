@@ -20,7 +20,7 @@ Requires API key authentication.
 |-----------|------|----------|-------------|
 | `amount` | string | Yes | Payment amount (e.g., `"100.00"`) |
 | `currency` | string | Yes | Currency code (`USDC`, `USDT`, `DAI`) |
-| `type` | string | Yes | Payment type (`CONSENTED_PULL`, `DELIVERY_VS_PAYMENT`) |
+| `type` | string | Yes | Payment type (`DELIVERY_VS_PAYMENT`) |
 | `settlementMethod` | string | Yes | Settlement method (`OFF_RAMP_MOCK`, `OFF_RAMP_TO_RTP`, `OFF_RAMP_TO_BANK`) |
 | `settlementDestination` | string | Yes | Where to send fiat funds (bank account, RTP ID, etc.) |
 | `description` | string | No | Human-readable description |
@@ -70,27 +70,6 @@ For `DELIVERY_VS_PAYMENT` type, include release type in metadata:
 
 ## Example Request
 
-### Consented Pull
-
-```bash
-curl https://api.finternet.com/v1/payment-intents \
-  -H "X-API-Key: sk_test_your_key" \
-  -H "Content-Type: application/json" \
-  -X POST \
-  -d '{
-    "amount": "100.00",
-    "currency": "USDC",
-    "type": "CONSENTED_PULL",
-    "settlementMethod": "OFF_RAMP_MOCK",
-    "settlementDestination": "bank_account_123",
-    "description": "Order #12345",
-    "metadata": {
-      "orderId": "ORD-123",
-      "customerId": "CUST-456"
-    }
-  }'
-```
-
 ### Delivery vs Payment (Time-Locked)
 
 ```bash
@@ -128,9 +107,9 @@ Returns a payment intent object wrapped in the standard API response format. **T
   "id": "intent_2xYz9AbC123",
   "object": "payment_intent",
   "status": "INITIATED",
-  "amount": "100.00",
+  "amount": "1000.00",
   "currency": "USDC",
-  "type": "CONSENTED_PULL",
+  "type": "DELIVERY_VS_PAYMENT",
   "description": "Order #12345",
   "settlementMethod": "OFF_RAMP_MOCK",
   "settlementDestination": "bank_account_123",
@@ -146,7 +125,7 @@ Returns a payment intent object wrapped in the standard API response format. **T
         { "name": "chainId", "type": "uint256" },
         { "name": "verifyingContract", "type": "address" }
       ],
-      "ConsentedPull": [
+      "DeliveryVsPayment": [
         { "name": "intentId", "type": "string" },
         { "name": "payer", "type": "address" },
         { "name": "payee", "type": "address" },
@@ -156,7 +135,7 @@ Returns a payment intent object wrapped in the standard API response format. **T
       ]
     },
     "domain": {
-      "name": "ConsentedPull",
+      "name": "DeliveryVsPayment",
       "version": "1",
       "chainId": 11155111,
       "verifyingContract": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318"
@@ -165,7 +144,7 @@ Returns a payment intent object wrapped in the standard API response format. **T
       "intentId": "intent_2xYz9AbC123",
       "payer": "0x0000000000000000000000000000000000000000",
       "payee": "0xMerchantAddress...",
-      "amount": "100000000",
+      "amount": "1000000000",
       "token": "0xTokenAddress...",
       "deadline": 1704153600
     }
@@ -253,7 +232,7 @@ http://localhost:5173/?intent={intentId}
 {
   "error": {
     "code": "invalid_request_error",
-    "message": "Invalid payment type. Must be CONSENTED_PULL or DELIVERY_VS_PAYMENT",
+    "message": "Invalid payment type. Must be DELIVERY_VS_PAYMENT",
     "type": "invalid_request_error"
   }
 }
@@ -348,9 +327,9 @@ After creating a payment intent, redirect your users to the `paymentUrl`:
 const response = await apiRequest('/payment-intents', {
   method: 'POST',
   body: JSON.stringify({
-    amount: '100.00',
+    amount: '1000.00',
     currency: 'USDC',
-    type: 'CONSENTED_PULL',
+    type: 'DELIVERY_VS_PAYMENT',
     settlementMethod: 'OFF_RAMP_MOCK',
     settlementDestination: 'bank_account_123',
   }),
@@ -367,9 +346,9 @@ window.location.href = paymentUrl;
 
 ```python
 response = api_request('/payment-intents', method='POST', data={
-    'amount': '100.00',
+    'amount': '1000.00',
     'currency': 'USDC',
-    'type': 'CONSENTED_PULL',
+    'type': 'DELIVERY_VS_PAYMENT',
     'settlementMethod': 'OFF_RAMP_MOCK',
     'settlementDestination': 'bank_account_123',
 })

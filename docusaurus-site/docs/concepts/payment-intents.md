@@ -73,8 +73,8 @@ Currency code. Supported: `USDC`, `USDT`, `DAI`.
 
 ### `type`
 Payment type. Options:
-- `CONSENTED_PULL` - Standard payment with payer consent
-- `DELIVERY_VS_PAYMENT` - Escrow-based payment with delivery verification
+- `CONDITIONAL` - Conditional payment with smart module logic
+- `DELIVERY_VS_PAYMENT` - Conditional payment with delivery verification
 
 ### `settlementMethod`
 How funds are converted to fiat. Options:
@@ -161,7 +161,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONSENTED_PULL",
+    "type": "CONDITIONAL",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "bank_account_123"
   }'

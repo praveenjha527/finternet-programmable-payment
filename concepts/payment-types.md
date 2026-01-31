@@ -1,57 +1,12 @@
 # Payment Types
 
-Finternet supports multiple payment types, each designed for different use cases. Choose the right type based on your business needs.
+Finternet supports programmable payments designed for secure transactions with escrow protection. Our payment system is built around Delivery vs Payment (DvP) to ensure both parties are protected.
 
 ## Overview
 
 | Type | Use Case | Escrow | Settlement Timing |
 |------|----------|--------|-------------------|
-| **Consented Pull** | Standard payments | No | Immediate after confirmation |
 | **Delivery vs Payment** | Goods/services delivery | Yes | After delivery proof or time lock |
-
-## Consented Pull
-
-**Best for:** Standard payments where funds are released immediately after blockchain confirmation.
-
-### Characteristics
-
-- ✅ Simple payment flow
-- ✅ Funds released immediately after confirmation
-- ✅ No escrow required
-- ✅ Fastest settlement
-
-### Flow
-
-```
-1. Create payment intent
-2. Payer signs and executes transaction
-3. Transaction confirmed (5+ blocks)
-4. Funds immediately available for settlement
-5. Settlement processed
-```
-
-### Example
-
-```bash
-curl https://api.finternet.com/v1/payment-intents \
-  -H "X-API-Key: sk_test_your_key" \
-  -X POST \
-  -d '{
-    "amount": "100.00",
-    "currency": "USDC",
-    "type": "CONSENTED_PULL",
-    "settlementMethod": "OFF_RAMP_MOCK",
-    "settlementDestination": "bank_account_123"
-  }'
-```
-
-### When to Use
-
-- Digital products
-- Services delivered immediately
-- Subscription payments
-- Donations
-- Any payment where delivery is instant
 
 ## Delivery vs Payment (DvP)
 
@@ -167,34 +122,6 @@ curl https://api.finternet.com/v1/payment-intents/intent_xxx/escrow/milestones/m
 - Project-based work
 - Freelance services
 - Any transaction requiring delivery verification
-
-## Comparison
-
-### Consented Pull vs Delivery vs Payment
-
-| Feature | Consented Pull | Delivery vs Payment |
-|---------|----------------|---------------------|
-| **Escrow** | No | Yes |
-| **Release Timing** | Immediate | On delivery/time/milestone |
-| **Dispute Support** | Limited | Full support |
-| **Complexity** | Simple | More complex |
-| **Use Cases** | Digital, instant | Physical, services |
-| **Settlement Speed** | Fastest | Depends on release type |
-
-## Choosing the Right Type
-
-### Use Consented Pull if:
-- ✅ Product/service is delivered instantly
-- ✅ No delivery verification needed
-- ✅ You want fastest settlement
-- ✅ Simple payment flow
-
-### Use Delivery vs Payment if:
-- ✅ Physical goods need shipping
-- ✅ Services require completion verification
-- ✅ You need escrow protection
-- ✅ You want milestone-based payments
-- ✅ You need dispute resolution
 
 ## Next Steps
 
