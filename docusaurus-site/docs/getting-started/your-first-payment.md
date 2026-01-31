@@ -4,7 +4,7 @@ This guide walks you through creating and processing your first payment with Fin
 
 ## Overview
 
-We'll create a simple payment intent, confirm it, and track it through the complete lifecycle. This example uses a **Consented Pull** payment type, which is the simplest payment flow.
+We'll create a simple payment intent, confirm it, and track it through the complete lifecycle. This example uses a **Conditional Payment** type, which is the simplest payment flow.
 
 ## Step 1: Create a Payment Intent
 
@@ -18,7 +18,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONSENTED_PULL",
+    "type": "CONDITIONAL",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "bank_account_123",
     "description": "Order #12345"
@@ -37,7 +37,7 @@ curl https://api.finternet.com/v1/payment-intents \
     "status": "INITIATED",
   "amount": "100.00",
   "currency": "USDC",
-  "type": "CONSENTED_PULL",
+  "type": "CONDITIONAL",
   "settlementMethod": "OFF_RAMP_MOCK",
   "settlementDestination": "bank_account_123",
   "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
@@ -45,7 +45,7 @@ curl https://api.finternet.com/v1/payment-intents \
   "typedData": {
     "types": {
       "EIP712Domain": [...],
-      "ConsentedPull": [...]
+      "ConditionalPayment": [...]
     },
     "domain": {...},
     "message": {...}
@@ -225,44 +225,18 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
 
 ## Complete Flow Diagram
 
-```
-┌─────────────────┐
-│  Create Intent  │ → INITIATED
-│  Get paymentUrl │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Redirect User  │ → paymentUrl
-│  to Frontend   │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Payer Signs TX  │ → (Frontend)
-│  on Frontend    │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Confirm Payment│ → PROCESSING
-│  (Auto/Manual)  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ 5+ Confirmations│ → SUCCEEDED
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│   Settlement    │ → SETTLED
-└─────────────────┘
+```mermaid
+flowchart TD
+  A[Create Intent<br/>Get paymentUrl] -->|INITIATED| B[Redirect user to paymentUrl]
+  B --> C[Payer signs transaction<br/>on frontend]
+  C -->|PROCESSING| D[Confirm payment<br/>(auto or manual)]
+  D -->|SUCCEEDED| E[Blockchain confirmations (5+)]
+  E -->|SETTLED| F[Settlement completed]
 ```
 
 ## Next Steps
 
-- 🔒 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) for escrow transactions
+- 🔒 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) for conditional payment transactions
 - ⏱️ Explore [Time-Based Payouts](guides/time-based-payouts.md) for scheduled releases
 - 🎯 Check out [Milestone Payments](guides/milestone-payments.md) for project-based payments
 - 📚 Read the [API Reference](api-reference/introduction.md) for complete details

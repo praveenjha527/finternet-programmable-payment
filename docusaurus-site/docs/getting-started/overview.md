@@ -1,14 +1,15 @@
-# Getting Started
+# Overview
 
 Welcome to Finternet! This guide will help you integrate programmable payments into your application in just a few minutes.
 
 ## What You'll Build
 
 By the end of this guide, you'll have:
-- ✅ Created your first payment intent
-- ✅ Understood the payment lifecycle
-- ✅ Integrated payment confirmation
-- ✅ Processed your first settlement
+- ✅ Build intelligent, programmable payment flows
+- ✅ Create real-time, event-driven app experiences
+- ✅ Integrate payments directly into your application logic
+- ✅ Implement automated, rule-based workflows
+- ✅ Apply AI tools to support real product development
 
 ## Prerequisites
 
