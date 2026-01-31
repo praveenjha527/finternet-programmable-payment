@@ -43,7 +43,7 @@ const intent = await apiRequest('/payment-intents', {
   body: JSON.stringify({
     amount: '100.00',
     currency: 'USDC',
-    type: 'CONSENTED_PULL',
+    type: 'CONDITIONAL',
     settlementMethod: 'OFF_RAMP_MOCK',
     settlementDestination: 'bank_account_123',
     description: 'Order #12345',
@@ -146,7 +146,7 @@ def api_request(endpoint, method='GET', data=None):
 intent = api_request('/payment-intents', method='POST', data={
     'amount': '100.00',
     'currency': 'USDC',
-    'type': 'CONSENTED_PULL',
+    'type': 'CONDITIONAL',
     'settlementMethod': 'OFF_RAMP_MOCK',
     'settlementDestination': 'bank_account_123',
     'description': 'Order #12345',
@@ -205,7 +205,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONSENTED_PULL",
+    "type": "CONDITIONAL",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "bank_account_123"
   }'
@@ -256,7 +256,7 @@ const createCheckout = async (cartTotal: string, orderId: string) => {
     body: JSON.stringify({
       amount: cartTotal,
       currency: 'USDC',
-      type: 'CONSENTED_PULL',
+      type: 'CONDITIONAL',
       settlementMethod: 'OFF_RAMP_MOCK',
       settlementDestination: 'merchant_bank_account',
       description: `Order ${orderId}`,

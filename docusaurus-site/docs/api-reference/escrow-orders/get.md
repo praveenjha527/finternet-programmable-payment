@@ -125,7 +125,7 @@ Returns the escrow order object if the payment intent is of type `DELIVERY_VS_PA
 
 **Status Code:** `400 Bad Request`
 
-This occurs when the payment intent is not an escrow-based payment (e.g., `CONSENTED_PULL`).
+This occurs when the payment intent is not an escrow-based payment (e.g., `CONDITIONAL`).
 
 ### Escrow Order Not Found
 

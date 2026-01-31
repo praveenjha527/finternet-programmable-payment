@@ -56,7 +56,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -u sk_test_your_key_here: \
   -d amount="100.00" \
   -d currency="USDC" \
-  -d type="CONSENTED_PULL" \
+  -d type="CONDITIONAL" \
   -d settlementMethod="OFF_RAMP_MOCK" \
   -d settlementDestination="bank_account_123"
 ```
@@ -72,7 +72,7 @@ curl https://api.finternet.com/v1/payment-intents \
     "status": "INITIATED",
   "amount": "100.00",
   "currency": "USDC",
-  "type": "CONSENTED_PULL",
+  "type": "CONDITIONAL",
   "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
     "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
     "typedData": { ... },

@@ -46,7 +46,7 @@ Payment intents progress through a well-defined lifecycle with specific statuses
 
 **What happens:**
 - Transaction confirmed on blockchain
-- Funds are locked (for DvP) or available (for Consented Pull)
+- Funds are locked in escrow
 - Settlement process initiated
 - Merchant account credited
 

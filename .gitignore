@@ -26,3 +26,12 @@ _book/
 
 # OS-specific
 Thumbs.db
+
+# Docusaurus
+build
+node_modules
+.docusaurus
+docusaurus-site/.nvmrc
+
+# NVM
+.nvmrc

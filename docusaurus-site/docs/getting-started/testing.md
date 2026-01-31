@@ -27,7 +27,7 @@ curl https://api.finternet.com/v1/payment-intents \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONSENTED_PULL",
+    "type": "CONDITIONAL",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "test_account"
   }'
