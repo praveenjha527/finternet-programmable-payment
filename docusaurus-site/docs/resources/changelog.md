@@ -12,6 +12,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Additional settlement methods
 - Enhanced dispute resolution features
 
+## [1.1.0] - 2026-01-31
+
+### Changed
+- **BREAKING**: Streamlined payment architecture to focus exclusively on `DELIVERY_VS_PAYMENT` with escrow protection
+- Deprecated conditional payment flows in favor of enhanced security model
+- Updated all API examples and documentation to use `DELIVERY_VS_PAYMENT` type
+- Enhanced EIP-712 typed data structures to `DeliveryVsPayment`
+- Improved payment flow documentation with focus on buyer protection and security
+
+### Removed
+- Legacy payment type references from all documentation
+- Comparison tables between payment types (now single unified approach)
+- Non-escrow payment flow examples
+
+### Documentation
+- Restructured payment types guide to emphasize security-first approach
+- Updated API reference with consistent `DELIVERY_VS_PAYMENT` examples
+- Simplified getting started guide with unified payment model
+- Enhanced payment flows documentation with escrow benefits
+- Updated status lifecycle documentation for escrow-only model
+
 ## [1.0.0] - 2024-01-01
 
 ### Added
@@ -41,7 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `POST /v1/payment-intents/:id/escrow/milestones/:milestoneId/complete` - Complete milestone
 
 ### Payment Types
-- `CONDITIONAL` - Conditional payment with smart module logic
 - `DELIVERY_VS_PAYMENT` - Escrow-based payment with delivery verification
 
 ### Settlement Methods
@@ -73,13 +93,6 @@ The API uses URL-based versioning:
 
 No deprecations at this time.
 
-## Security Updates
-
-### 2024-01-01
-- Initial security audit completed
-- EIP-712 signature verification implemented
-- API key authentication enforced
-- Merchant isolation verified
 
 ## Related
 
