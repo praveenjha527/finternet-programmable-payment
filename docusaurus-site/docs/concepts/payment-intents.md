@@ -178,4 +178,4 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
 
 - [Payment Types](payment-types.md) - Different payment options
 - [Status & Lifecycle](status-lifecycle.md) - Complete status reference
-- [API Reference](api-reference/payment-intents.md) - Full API documentation
+- [API Reference](../api-reference/payment-intents/create.md) - Full API documentation

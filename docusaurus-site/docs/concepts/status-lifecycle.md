@@ -277,4 +277,4 @@ This status indicates an error that may require intervention:
 
 - 📖 Read about [Payment Intents](payment-intents.md)
 - 🔄 Learn about [Webhooks](resources/webhooks.md)
-- 📚 Check the [API Reference](api-reference/payment-intents.md)
+- 📚 Check the [API Reference](../api-reference/payment-intents/create.md)
