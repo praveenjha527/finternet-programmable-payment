@@ -201,4 +201,4 @@ curl https://api.finternet.com/v1/payment-intents/intent_xxx/escrow/milestones/m
 - 📖 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) in detail
 - ⏱️ Explore [Time-Based Payouts](guides/time-based-payouts.md)
 - 🎯 Read about [Milestone Payments](guides/milestone-payments.md)
-- 📚 Check the [API Reference](api-reference/payment-intents.md)
+- 📚 Check the [API Reference](../api-reference/payment-intents/create.md)

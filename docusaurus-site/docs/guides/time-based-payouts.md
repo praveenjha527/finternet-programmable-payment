@@ -263,4 +263,4 @@ If funds release immediately, check:
 
 - 📖 Learn about [Delivery vs Payment](delivery-vs-payment.md)
 - 🎯 Explore [Milestone Payments](milestone-payments.md)
-- 📚 Check the [API Reference](api-reference/escrow-orders.md)
+- 📚 Check the [API Reference](../api-reference/escrow-orders/get.md)
