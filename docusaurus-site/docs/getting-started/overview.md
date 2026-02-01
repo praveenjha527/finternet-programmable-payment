@@ -39,11 +39,19 @@ sk_{environment}_{unique_id}
 sk_test_51AbC123XyZ789...
 ```
 
-### Where to Find Your Keys
+### Step 1: Get Your API Key
 
-1. Log in to your Finternet dashboard
+To start using Finternet, you'll need an API key:
+
+1. Sign up at [Finternet Dashboard](https://dashboard.finternet.com)
 2. Navigate to **Settings** → **API Keys**
 3. Copy your **Secret Key** (starts with `sk_`)
+
+:::warning Sandbox Environment
+🧪 **Current Environment**: This documentation uses the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+
+🚀 **Production API** will be available once deployed.
+:::
 
 > ⚠️ **Security Note**: Never expose your secret keys in client-side code or commit them to version control. Use environment variables or secure secret management.
 
@@ -52,7 +60,7 @@ sk_test_51AbC123XyZ789...
 Let's create a simple payment intent to verify your setup:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -u sk_test_your_key_here: \
   -d amount="100.00" \
   -d currency="USDC" \
@@ -114,7 +122,7 @@ Every payment goes through these stages:
 Once a payer signs and executes the transaction on the frontend, the payment is automatically confirmed. You can also manually confirm it:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -129,7 +137,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
 Poll the payment intent to track its progress:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -u sk_test_your_key_here:
 ```
 

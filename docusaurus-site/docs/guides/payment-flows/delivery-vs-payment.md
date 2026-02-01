@@ -147,12 +147,12 @@ const deliveryProof = await submitDeliveryProof(intent.id, {
 Monitor the order status throughout the process:
 
 ```typescript
-const escrowOrder = await getEscrowOrder(intentId);
+const conditionalPayment = await getConditionalPayment(intentId);
 
-console.log('Order Status:', escrowOrder.orderStatus);
+console.log('Order Status:', conditionalPayment.orderStatus);
 // PENDING → SHIPPED → DELIVERED → COMPLETED
 
-console.log('Settlement Status:', escrowOrder.settlementStatus);
+console.log('Settlement Status:', conditionalPayment.settlementStatus);
 // NONE → SCHEDULED → EXECUTED → CONFIRMED
 ```
 
@@ -168,7 +168,7 @@ await raiseDispute(intentId, {
 });
 ```
 
-Disputes pause fund release until resolved. See [Dispute Resolution](dispute-resolution.md) for details.
+Disputes pause fund release until resolved. See [Dispute Resolution](../dispute-resolution.md) for details.
 
 ## Best Practices
 
@@ -202,8 +202,8 @@ try {
   if (error.code === 'invalid_status') {
     // Order must be in Created (0) status
     // Check order status first
-    const order = await getEscrowOrder(intentId);
-    console.log('Current status:', order.orderStatus);
+    const conditionalPayment = await getConditionalPayment(intentId);
+    console.log('Current status:', conditionalPayment.orderStatus);
   }
 }
 ```
@@ -211,8 +211,8 @@ try {
 ### Delivery Proof Already Submitted
 
 ```typescript
-const order = await getEscrowOrder(intentId);
-if (order.actualDeliveryHash) {
+const conditionalPayment = await getConditionalPayment(intentId);
+if (conditionalPayment.actualDeliveryHash) {
   console.log('Delivery proof already submitted');
   // Check delivery proof details
 }
@@ -220,7 +220,7 @@ if (order.actualDeliveryHash) {
 
 ## Related
 
-- [Submit Delivery Proof](api-reference/escrow-orders/submit-delivery-proof.md)
-- [Get Escrow Order](api-reference/escrow-orders/get.md)
-- [Raise Dispute](api-reference/escrow-orders/raise-dispute.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Submit Delivery Proof](../../api-reference/conditional-payments/submit-delivery-proof.md)
+- [Get Conditional Payment](../../api-reference/conditional-payments/get.md)
+- [Raise Dispute](../../api-reference/conditional-payments/raise-dispute.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)

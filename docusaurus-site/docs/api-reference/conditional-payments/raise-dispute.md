@@ -1,11 +1,11 @@
 # Raise Dispute
 
-Raises a dispute for an escrow order, pausing fund release until the dispute is resolved.
+Raises a dispute for a conditional payment, pausing fund release until the dispute is resolved.
 
 ## Endpoint
 
 ```
-POST /v1/payment-intents/:intentId/escrow/dispute
+POST /v1/payment-intents/:intentId/conditional-payment/dispute
 ```
 
 ## Authentication
@@ -29,7 +29,7 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/escrow/dispute \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/conditional-payment/dispute \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -87,13 +87,13 @@ Common values:
 
 ## Error Responses
 
-### Escrow Order Not Found
+### Conditional Payment Not Found
 
 ```json
 {
   "error": {
     "code": "resource_missing",
-    "message": "Escrow order not found",
+    "message": "Conditional payment not found",
     "type": "invalid_request_error"
   }
 }
@@ -135,7 +135,7 @@ Common values:
 
 ```typescript
 const response = await fetch(
-  `https://api.finternet.com/v1/payment-intents/${intentId}/escrow/dispute`,
+  `https://sandbox.pg.api.finternetlab.io/v1/payment-intents/${intentId}/conditional-payment/dispute`,
   {
     method: 'POST',
     headers: {
@@ -160,7 +160,7 @@ console.log('Dispute raised:', dispute.status);
 import requests
 
 response = requests.post(
-    f'https://api.finternet.com/v1/payment-intents/{intent_id}/escrow/dispute',
+    f'https://sandbox.pg.api.finternetlab.io/v1/payment-intents/{intent_id}/conditional-payment/dispute',
     headers={
         'X-API-Key': os.environ['FINTERNET_API_KEY'],
         'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ Provide clear, detailed reasons:
 
 ## Related
 
-- [Get Escrow Order](get.md)
+- [Get Conditional Payment](get.md)
 - [Submit Delivery Proof](submit-delivery-proof.md)
-- [Dispute Resolution](guides/dispute-resolution.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Dispute Resolution](../../guides/dispute-resolution.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)

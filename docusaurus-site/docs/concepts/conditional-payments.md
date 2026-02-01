@@ -1,10 +1,10 @@
-# Escrow Orders
+# Conditional Payments
 
-Escrow orders are the foundation of Delivery vs Payment (DvP) transactions. They lock funds in a smart contract until delivery conditions are met.
+Conditional payments are the foundation of Delivery vs Payment (DvP) transactions. They lock funds in a smart contract until delivery conditions are met.
 
-## What is an Escrow Order?
+## What is a Conditional Payment?
 
-An escrow order is a smart contract-based agreement that:
+A conditional payment is a smart contract-based agreement that:
 - Locks buyer funds in a secure contract
 - Releases funds only when delivery conditions are met
 - Provides dispute resolution mechanisms
@@ -18,7 +18,7 @@ Created (0) → Delivered (2) → AwaitingSettlement (3) → Completed (4)
 
 ### Status Flow
 
-1. **Created (0)**: Order created, funds locked in escrow
+1. **Created (0)**: Order created, funds locked with conditional logic
 2. **Delivered (2)**: Delivery proof submitted, order marked as delivered
 3. **AwaitingSettlement (3)**: Funds released to merchant's contract balance
 4. **Completed (4)**: Settlement executed, funds sent to merchant's bank
@@ -112,15 +112,15 @@ Automatic release when delivery proof is submitted:
 - **disputeReason**: Reason for dispute
 - **disputeRaisedBy**: Address that raised dispute
 
-## Creating Escrow Orders
+## Creating Conditional Payments
 
-Escrow orders are automatically created when you create a payment intent with type `DELIVERY_VS_PAYMENT`:
+Conditional payments are automatically created when you create a payment intent with type `DELIVERY_VS_PAYMENT`:
 
 ```typescript
 const intent = await createPaymentIntent({
   amount: '1000.00',
   currency: 'USDC',
-  type: 'DELIVERY_VS_PAYMENT', // Triggers escrow order creation
+  type: 'DELIVERY_VS_PAYMENT', // Triggers conditional payment creation
   settlementMethod: 'OFF_RAMP_MOCK',
   settlementDestination: 'bank_account_123',
   metadata: {
@@ -130,18 +130,18 @@ const intent = await createPaymentIntent({
   },
 });
 
-// Escrow order is automatically created
-const escrowOrder = await getEscrowOrder(intent.id);
+// Conditional payment is automatically created
+const conditionalPayment = await getConditionalPayment(intent.id);
 ```
 
-## Retrieving Escrow Orders
+## Retrieving Conditional Payments
 
 ```typescript
-const escrowOrder = await getEscrowOrder(intentId);
+const conditionalPayment = await getConditionalPayment(intentId);
 
-console.log('Order ID:', escrowOrder.data.orderId);
-console.log('Status:', escrowOrder.data.orderStatus);
-console.log('Release Type:', escrowOrder.data.releaseType);
+console.log('Order ID:', conditionalPayment.data.orderId);
+console.log('Status:', conditionalPayment.data.orderStatus);
+console.log('Release Type:', conditionalPayment.data.releaseType);
 ```
 
 ## Best Practices
@@ -166,7 +166,7 @@ console.log('Release Type:', escrowOrder.data.releaseType);
 
 ## Related
 
-- [Delivery vs Payment](guides/delivery-vs-payment.md)
-- [Time-Based Payouts](guides/time-based-payouts.md)
-- [Milestone Payments](guides/milestone-payments.md)
+- [Delivery vs Payment](../guides/payment-flows/delivery-vs-payment.md)
+- [Time-Based Payouts](../guides/payment-flows/time-based-payouts.md)
+- [Milestone Payments](../guides/payment-flows/milestone-payments.md)
 - [Dispute Resolution](guides/dispute-resolution.md)

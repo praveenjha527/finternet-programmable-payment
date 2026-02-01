@@ -188,7 +188,7 @@ These transitions will return `400 Bad Request` with error code `invalid_state_t
 Poll the payment intent endpoint to check status:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_xxx \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_xxx \
   -H "X-API-Key: sk_test_your_key"
 ```
 

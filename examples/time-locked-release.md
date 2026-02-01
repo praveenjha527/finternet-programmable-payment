@@ -65,8 +65,8 @@ const confirmPayment = async (intentId: string) => {
 
 // 3. Monitor time lock status
 const monitorTimeLock = async (intentId: string) => {
-  const escrowOrder = await finternet.escrowOrders.get(intentId);
-  const timeLockUntil = parseInt(escrowOrder.data.timeLockUntil);
+  const conditionalPayment = await finternet.conditionalPayments.get(intentId);
+  const timeLockUntil = parseInt(conditionalPayment.data.timeLockUntil);
   const now = Math.floor(Date.now() / 1000);
   
   if (now < timeLockUntil) {
@@ -83,10 +83,10 @@ const monitorTimeLock = async (intentId: string) => {
 
 // 4. Check if funds were released
 const checkReleaseStatus = async (intentId: string) => {
-  const escrowOrder = await finternet.escrowOrders.get(intentId);
+  const conditionalPayment = await finternet.conditionalPayments.get(intentId);
   
-  if (escrowOrder.data.releasedAt) {
-    const releasedAt = new Date(parseInt(escrowOrder.data.releasedAt) * 1000);
+  if (conditionalPayment.data.releasedAt) {
+    const releasedAt = new Date(parseInt(conditionalPayment.data.releasedAt) * 1000);
     console.log(`Funds released at: ${releasedAt.toISOString()}`);
     return true;
   }
@@ -212,5 +212,5 @@ const contractorPayout = await createTimeLockedPayment('2000.00', 14);
 ## Related
 
 - [Time-Based Payouts](guides/time-based-payouts.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](../concepts/conditional-payments.md)
 - [API Reference](api-reference/introduction.md)

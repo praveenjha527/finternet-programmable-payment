@@ -72,13 +72,13 @@ If dispute window expires without resolution:
 Check dispute status:
 
 ```typescript
-const escrowOrder = await getEscrowOrder(intentId);
+const conditionalPayment = await getConditionalPayment(intentId);
 
-if (escrowOrder.orderStatus === 'DISPUTED') {
-  console.log('Dispute raised at:', escrowOrder.disputeRaisedAt);
-  console.log('Dispute reason:', escrowOrder.disputeReason);
-  console.log('Raised by:', escrowOrder.disputeRaisedBy);
-  console.log('Dispute window:', escrowOrder.disputeWindow);
+if (conditionalPayment.orderStatus === 'DISPUTED') {
+  console.log('Dispute raised at:', conditionalPayment.disputeRaisedAt);
+  console.log('Dispute reason:', conditionalPayment.disputeReason);
+  console.log('Raised by:', conditionalPayment.disputeRaisedBy);
+  console.log('Dispute window:', conditionalPayment.disputeWindow);
 }
 ```
 
@@ -127,18 +127,18 @@ console.log('Dispute raised:', dispute.status);
 ### Check Dispute Status
 
 ```typescript
-const order = await getEscrowOrder(intentId);
+const conditionalPayment = await getConditionalPayment(intentId);
 
-if (order.orderStatus === 'DISPUTED') {
+if (conditionalPayment.orderStatus === 'DISPUTED') {
   const disputeInfo = {
-    raisedAt: new Date(parseInt(order.disputeRaisedAt) * 1000),
-    reason: order.disputeReason,
-    raisedBy: order.disputeRaisedBy,
-    window: parseInt(order.disputeWindow),
+    raisedAt: new Date(parseInt(conditionalPayment.disputeRaisedAt) * 1000),
+    reason: conditionalPayment.disputeReason,
+    raisedBy: conditionalPayment.disputeRaisedBy,
+    window: parseInt(conditionalPayment.disputeWindow),
   };
 
   const timeRemaining = disputeInfo.window - 
-    (Math.floor(Date.now() / 1000) - parseInt(order.disputeRaisedAt));
+    (Math.floor(Date.now() / 1000) - parseInt(conditionalPayment.disputeRaisedAt));
 
   console.log(`Dispute: ${disputeInfo.reason}`);
   console.log(`Time remaining: ${timeRemaining} seconds`);
@@ -174,7 +174,7 @@ try {
   if (error.code === 'invalid_request') {
     console.log('Dispute already raised for this order');
     // Check existing dispute
-    const order = await getEscrowOrder(intentId);
+    const conditionalPayment = await getConditionalPayment(intentId);
   }
 }
 ```
@@ -182,17 +182,17 @@ try {
 ### Invalid Order Status
 
 ```typescript
-const order = await getEscrowOrder(intentId);
+const conditionalPayment = await getConditionalPayment(intentId);
 
-if (order.orderStatus === 'COMPLETED') {
-  console.log('Cannot raise dispute: order already completed');
+if (conditionalPayment.orderStatus === 'COMPLETED') {
+  console.log('Cannot raise dispute: conditional payment already completed');
   // Disputes can only be raised before completion
 }
 ```
 
 ## Related
 
-- [Raise Dispute](api-reference/escrow-orders/raise-dispute.md)
-- [Get Escrow Order](api-reference/escrow-orders/get.md)
-- [Delivery vs Payment](delivery-vs-payment.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Raise Dispute](../api-reference/conditional-payments/raise-dispute.md)
+- [Get Conditional Payment](../api-reference/conditional-payments/get.md)
+- [Delivery vs Payment](payment-flows/delivery-vs-payment.md)
+- [Conditional Payments](../concepts/conditional-payments.md)

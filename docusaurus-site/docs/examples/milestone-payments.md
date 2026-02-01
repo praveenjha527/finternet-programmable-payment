@@ -10,7 +10,7 @@ This example shows how to create milestones, complete them sequentially, and aut
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://api.finternet.com/v1';
+const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -215,6 +215,6 @@ for i, milestone in enumerate(created_milestones):
 
 ## Related
 
-- [Milestone Payments Guide](guides/milestone-payments.md)
+- [Milestone Payments Guide](../guides/payment-flows/milestone-payments.md)
 - [Create Milestone](api-reference/milestones/create.md)
 - [Complete Milestone](api-reference/milestones/complete.md)

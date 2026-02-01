@@ -10,7 +10,7 @@ This example shows how to create an escrow order, handle delivery, and release f
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://api.finternet.com/v1';
+const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -129,10 +129,10 @@ const runDvPFlow = async () => {
   console.log('Delivery proof submitted:', deliveryProof.id);
 
   // Step 6: Funds automatically released (if autoReleaseOnProof is true)
-  // Check escrow order status
-  const escrowOrder = await apiRequest(`/payment-intents/${intent.id}/escrow`);
-  console.log('Escrow order status:', escrowOrder.data.orderStatus);
-  console.log('Settlement status:', escrowOrder.data.settlementStatus);
+  // Check conditional payment status
+  const conditionalPayment = await apiRequest(`/payment-intents/${intent.id}/conditional-payment`);
+  console.log('Order status:', conditionalPayment.data.orderStatus);
+  console.log('Settlement status:', conditionalPayment.data.settlementStatus);
 };
 ```
 
@@ -145,7 +145,7 @@ import time
 from web3 import Web3
 
 API_KEY = os.environ.get('FINTERNET_API_KEY')
-BASE_URL = 'https://api.finternet.com/v1'
+BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1'
 
 def api_request(endpoint, method='GET', data=None):
     url = f'{BASE_URL}{endpoint}'
@@ -227,6 +227,6 @@ print(f'Delivery proof submitted: {delivery_proof["id"]}')
 
 ## Related
 
-- [Delivery vs Payment Guide](guides/delivery-vs-payment.md)
-- [Submit Delivery Proof](api-reference/escrow-orders/submit-delivery-proof.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Delivery vs Payment Guide](../guides/payment-flows/delivery-vs-payment.md)
+- [Submit Delivery Proof](../api-reference/conditional-payments/submit-delivery-proof.md)
+- [Conditional Payments](../concepts/conditional-payments.md)

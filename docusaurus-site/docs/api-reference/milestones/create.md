@@ -52,7 +52,7 @@ Returns the created milestone object.
   "object": "milestone",
   "data": {
     "id": "milestone_xyz789",
-    "escrowOrderId": "escrow_order_abc123",
+    "conditionalPaymentId": "conditional_payment_abc123",
     "paymentIntentId": "intent_2xYz9AbC123",
     "milestoneIndex": 0,
     "description": "Initial payment - 30%",
@@ -235,5 +235,5 @@ for milestone in milestones:
 ## Related
 
 - [Complete Milestone](complete.md)
-- [Milestone Payments](guides/milestone-payments.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Milestone Payments](../../guides/payment-flows/milestone-payments.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)

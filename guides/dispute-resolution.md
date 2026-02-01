@@ -192,7 +192,7 @@ if (order.orderStatus === 'COMPLETED') {
 
 ## Related
 
-- [Raise Dispute](api-reference/escrow-orders/raise-dispute.md)
-- [Get Escrow Order](api-reference/escrow-orders/get.md)
-- [Delivery vs Payment](delivery-vs-payment.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Raise Dispute](../api-reference/conditional-payments/raise-dispute.md)
+- [Get Conditional Payment](../api-reference/conditional-payments/get.md)
+- [Delivery vs Payment](payment-flows/delivery-vs-payment.md)
+- [Conditional Payments](../concepts/conditional-payments.md)
