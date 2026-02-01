@@ -2,6 +2,12 @@
 
 This guide walks you through creating and processing your first payment with Finternet, from creation to settlement.
 
+:::tip Sandbox Environment
+🧪 **Testing Environment**: All examples in this guide use the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+
+🚀 **Production API** will be available once deployed.
+:::
+
 ## Overview
 
 We'll create a simple payment intent, confirm it, and track it through the complete lifecycle. This example uses a **Conditional Payment** type, which is the simplest payment flow.
@@ -11,7 +17,7 @@ We'll create a simple payment intent, confirm it, and track it through the compl
 A payment intent represents a request to collect payment from a payer. Let's create one:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -114,7 +120,7 @@ The payer visits the `paymentUrl` and:
 Once the payer has executed the transaction, confirm it with the signature and transaction hash:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -157,7 +163,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
 Poll the payment intent to track blockchain confirmation:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
@@ -195,7 +201,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
 Settlement happens automatically in the background. Check status again:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
@@ -236,9 +242,9 @@ flowchart TD
 
 ## Next Steps
 
-- 🔒 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) for conditional payment transactions
-- ⏱️ Explore [Time-Based Payouts](guides/time-based-payouts.md) for scheduled releases
-- 🎯 Check out [Milestone Payments](guides/milestone-payments.md) for project-based payments
+- 🔒 Learn about [Delivery vs Payment](guides/payment-flows/delivery-vs-payment.md) for conditional payment transactions
+- ⏱️ Explore [Time-Based Payouts](guides/payment-flows/time-based-payouts.md) for scheduled releases
+- 🎯 Check out [Milestone Payments](guides/payment-flows/milestone-payments.md) for project-based payments
 - 📚 Read the [API Reference](api-reference/introduction.md) for complete details
 
 ## Common Questions

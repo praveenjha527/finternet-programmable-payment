@@ -1,11 +1,11 @@
 # Submit Delivery Proof
 
-Submits a delivery proof for an escrow order, allowing funds to be released to the merchant.
+Submits a delivery proof for a conditional payment, allowing funds to be released to the merchant.
 
 ## Endpoint
 
 ```
-POST /v1/payment-intents/:intentId/escrow/delivery-proof
+POST /v1/payment-intents/:intentId/conditional-payment/delivery-proof
 ```
 
 ## Authentication
@@ -30,7 +30,7 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/escrow/delivery-proof \
+curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/conditional-payment/delivery-proof \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -76,7 +76,7 @@ Returns the delivery proof object.
   "object": "delivery_proof",
   "data": {
     "id": "delivery_proof_xyz789",
-    "escrowOrderId": "escrow_order_abc123",
+    "conditionalPaymentId": "conditional_payment_abc123",
     "paymentIntentId": "intent_2xYz9AbC123",
     "proofHash": "0xabcdef1234567890...",
     "proofURI": "https://example.com/delivery-proofs/12345",
@@ -90,7 +90,7 @@ Returns the delivery proof object.
 
 ## Order Status Requirements
 
-The escrow order must be in `Created` status (status `0` on-chain) to submit a delivery proof. The order lifecycle is:
+The conditional payment must be in `Created` status (status `0` on-chain) to submit a delivery proof. The order lifecycle is:
 
 ```
 Created (0) → Delivered (2) → AwaitingSettlement (3) → Completed (4)
@@ -129,13 +129,13 @@ If `autoReleaseOnProof` is `false`, manual release is required.
 
 **Status Code:** `400 Bad Request`
 
-### Escrow Order Not Found
+### Conditional Payment Not Found
 
 ```json
 {
   "error": {
     "code": "resource_missing",
-    "message": "Escrow order not found",
+    "message": "Conditional payment not found",
     "type": "invalid_request_error"
   }
 }
@@ -178,7 +178,7 @@ const proofHash = ethers.keccak256(
 
 // Submit delivery proof
 const response = await fetch(
-  `https://api.finternet.com/v1/payment-intents/${intentId}/escrow/delivery-proof`,
+  `https://api.finternet.com/v1/payment-intents/${intentId}/conditional-payment/delivery-proof`,
   {
     method: 'POST',
     headers: {
@@ -214,7 +214,7 @@ proof_hash = Web3.keccak(text=json.dumps(delivery_data)).hex()
 
 # Submit delivery proof
 response = requests.post(
-    f'https://api.finternet.com/v1/payment-intents/{intent_id}/escrow/delivery-proof',
+    f'https://api.finternet.com/v1/payment-intents/{intent_id}/conditional-payment/delivery-proof',
     headers={
         'X-API-Key': os.environ['FINTERNET_API_KEY'],
         'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ print('Delivery proof submitted:', delivery_proof['id'])
 
 ## Related
 
-- [Get Escrow Order](get.md)
+- [Get Conditional Payment](get.md)
 - [Raise Dispute](raise-dispute.md)
 - [Delivery vs Payment](guides/delivery-vs-payment.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](concepts/conditional-payments.md)

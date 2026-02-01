@@ -166,7 +166,7 @@ Triggered when delivery proof is submitted.
   "data": {
     "object": {
       "id": "delivery_proof_xyz789",
-      "escrowOrderId": "escrow_order_abc123",
+      "conditionalPaymentId": "conditional_payment_abc123",
       "proofHash": "0xabcdef..."
     }
   }

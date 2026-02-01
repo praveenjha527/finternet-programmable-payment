@@ -158,7 +158,7 @@ Common issues and solutions when integrating with the Finternet API.
 
 **Solutions:**
 1. Check your internet connection
-2. Verify the API base URL is correct: `https://api.finternet.com/v1`
+2. Verify the API base URL is correct: `https://sandbox.pg.api.finternetlab.io/v1`
 3. Check for firewall or proxy issues
 4. Try increasing request timeout
 5. Implement retry logic with exponential backoff

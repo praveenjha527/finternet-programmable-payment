@@ -148,8 +148,8 @@ await completeMilestone(milestone0Id, {
 Monitor milestone status:
 
 ```typescript
-const escrowOrder = await getEscrowOrder(intentId);
-const milestones = escrowOrder.milestones;
+const conditionalPayment = await getConditionalPayment(intentId);
+const milestones = conditionalPayment.milestones;
 
 milestones.forEach((milestone) => {
   console.log(`Milestone ${milestone.milestoneIndex}: ${milestone.status}`);
@@ -217,5 +217,5 @@ if (milestone.status === 'RELEASED') {
 
 - [Create Milestone](api-reference/milestones/create.md)
 - [Complete Milestone](api-reference/milestones/complete.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)
 - [Time-Based Payouts](time-based-payouts.md)

@@ -1,11 +1,11 @@
-# Get Escrow Order
+# Get Conditional Payment
 
-Retrieves the escrow order associated with a payment intent.
+Retrieves the conditional payment associated with a payment intent.
 
 ## Endpoint
 
 ```
-GET /v1/payment-intents/:intentId/escrow
+GET /v1/payment-intents/:intentId/conditional-payment
 ```
 
 ## Authentication
@@ -21,20 +21,20 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/escrow \
+curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/conditional-payment \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
 ## Response
 
-Returns the escrow order object if the payment intent is of type `DELIVERY_VS_PAYMENT`.
+Returns the conditional payment object if the payment intent is of type `DELIVERY_VS_PAYMENT`.
 
 ```json
 {
-  "id": "escrow_order_abc123",
-  "object": "escrow_order",
+  "id": "conditional_payment_abc123",
+  "object": "conditional_payment",
   "data": {
-    "id": "escrow_order_abc123",
+    "id": "conditional_payment_abc123",
     "paymentIntentId": "intent_2xYz9AbC123",
     "orderId": "1234567890",
     "merchantId": "merchant_abc123",
@@ -69,14 +69,14 @@ Returns the escrow order object if the payment intent is of type `DELIVERY_VS_PA
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | string | Unique identifier for the escrow order |
+| `id` | string | Unique identifier for the conditional payment |
 | `paymentIntentId` | string | Associated payment intent ID |
 | `orderId` | string | Contract order ID (BigInt as string) |
 | `merchantId` | string | Merchant account ID |
-| `contractAddress` | string | Escrow contract address |
+| `contractAddress` | string | Conditional payment contract address |
 | `buyerAddress` | string | Buyer's wallet address |
 | `tokenAddress` | string | ERC-20 token address |
-| `amount` | string | Escrow amount as decimal string |
+| `amount` | string | Conditional payment amount as decimal string |
 | `deliveryPeriod` | integer | Delivery period in seconds |
 | `deliveryDeadline` | string | Unix timestamp deadline (BigInt as string) |
 | `expectedDeliveryHash` | string | Expected delivery proof hash (bytes32) |
@@ -111,7 +111,7 @@ Returns the escrow order object if the payment intent is of type `DELIVERY_VS_PA
 
 **Status Code:** `404 Not Found`
 
-### Not an Escrow Payment
+### Not a Conditional Payment
 
 ```json
 {
@@ -125,15 +125,15 @@ Returns the escrow order object if the payment intent is of type `DELIVERY_VS_PA
 
 **Status Code:** `400 Bad Request`
 
-This occurs when the payment intent is not an escrow-based payment (e.g., `CONSENTED_PULL`).
+This occurs when the payment intent is not a conditional payment.
 
-### Escrow Order Not Found
+### Conditional Payment Not Found
 
 ```json
 {
   "error": {
     "code": "resource_missing",
-    "message": "Escrow order not found for this payment intent",
+    "message": "Conditional payment not found for this payment intent",
     "type": "invalid_request_error"
   }
 }
@@ -147,7 +147,7 @@ This occurs when the payment intent is not an escrow-based payment (e.g., `CONSE
 
 ```typescript
 const response = await fetch(
-  `https://api.finternet.com/v1/payment-intents/${intentId}/escrow`,
+  `https://api.finternet.com/v1/payment-intents/${intentId}/conditional-payment`,
   {
     headers: {
       'X-API-Key': process.env.FINTERNET_API_KEY,
@@ -155,9 +155,9 @@ const response = await fetch(
   }
 );
 
-const escrowOrder = await response.json();
-console.log('Order status:', escrowOrder.data.orderStatus);
-console.log('Release type:', escrowOrder.data.releaseType);
+const conditionalPayment = await response.json();
+console.log('Order status:', conditionalPayment.data.orderStatus);
+console.log('Release type:', conditionalPayment.data.releaseType);
 ```
 
 ### Python
@@ -166,17 +166,17 @@ console.log('Release type:', escrowOrder.data.releaseType);
 import requests
 
 response = requests.get(
-    f'https://api.finternet.com/v1/payment-intents/{intent_id}/escrow',
+    f'https://api.finternet.com/v1/payment-intents/{intent_id}/conditional-payment',
     headers={'X-API-Key': os.environ['FINTERNET_API_KEY']}
 )
 
-escrow_order = response.json()
-print('Order status:', escrow_order['data']['orderStatus'])
+conditional_payment = response.json()
+print('Order status:', conditional_payment['data']['orderStatus'])
 ```
 
 ## Related
 
 - [Submit Delivery Proof](submit-delivery-proof.md)
 - [Raise Dispute](raise-dispute.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](concepts/conditional-payments.md)
 - [Delivery vs Payment](guides/delivery-vs-payment.md)

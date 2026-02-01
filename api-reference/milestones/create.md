@@ -236,4 +236,4 @@ for milestone in milestones:
 
 - [Complete Milestone](complete.md)
 - [Milestone Payments](guides/milestone-payments.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)

@@ -73,7 +73,7 @@ For `DELIVERY_VS_PAYMENT` type, include release type in metadata:
 ### Delivery vs Payment (Time-Locked)
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key" \
   -H "Content-Type: application/json" \
   -X POST \

@@ -232,4 +232,4 @@ Always complete milestones in order:
 
 - [Create Milestone](create.md)
 - [Milestone Payments](guides/milestone-payments.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Conditional Payments](../../concepts/conditional-payments.md)

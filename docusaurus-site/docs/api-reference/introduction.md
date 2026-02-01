@@ -4,11 +4,17 @@ Welcome to the Finternet Payment Gateway API reference. This section provides de
 
 ## Base URL
 
-All API requests should be made to:
+All API requests are made to:
 
 ```
-https://api.finternet.com/v1
+https://sandbox.pg.api.finternetlab.io/v1
 ```
+
+:::info Sandbox Environment
+🧪 **Current Environment**: This is the **sandbox environment** for testing and development.
+
+🚀 **Production API** will be available once deployed.
+:::
 
 For testing and development, use:
 
@@ -147,7 +153,7 @@ GET /v1/payment-intents?limit=10&starting_after=intent_123
 The API is versioned. The current version is `v1`. Include the version in the URL:
 
 ```
-https://api.finternet.com/v1/payment-intents
+https://sandbox.pg.api.finternetlab.io/v1/payment-intents
 ```
 
 ## Idempotency
@@ -167,5 +173,5 @@ Finternet can send webhooks to notify you of payment events. See [Webhooks](reso
 ## Next Steps
 
 - Browse [Payment Intents API](payment-intents/create.md)
-- Explore [Escrow Orders API](escrow-orders/get.md)
+- Explore [Conditional Payments API](conditional-payments/get.md)
 - Check out [Code Examples](examples/quickstart.md)

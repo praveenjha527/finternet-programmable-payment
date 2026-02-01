@@ -129,10 +129,10 @@ const runDvPFlow = async () => {
   console.log('Delivery proof submitted:', deliveryProof.id);
 
   // Step 6: Funds automatically released (if autoReleaseOnProof is true)
-  // Check escrow order status
-  const escrowOrder = await apiRequest(`/payment-intents/${intent.id}/escrow`);
-  console.log('Escrow order status:', escrowOrder.data.orderStatus);
-  console.log('Settlement status:', escrowOrder.data.settlementStatus);
+  // Check conditional payment status
+  const conditionalPayment = await apiRequest(`/payment-intents/${intent.id}/conditional-payment`);
+  console.log('Order status:', conditionalPayment.data.orderStatus);
+  console.log('Settlement status:', conditionalPayment.data.settlementStatus);
 };
 ```
 
@@ -228,5 +228,5 @@ print(f'Delivery proof submitted: {delivery_proof["id"]}')
 ## Related
 
 - [Delivery vs Payment Guide](guides/delivery-vs-payment.md)
-- [Submit Delivery Proof](api-reference/escrow-orders/submit-delivery-proof.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Submit Delivery Proof](../api-reference/conditional-payments/submit-delivery-proof.md)
+- [Conditional Payments](../concepts/conditional-payments.md)

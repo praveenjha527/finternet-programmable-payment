@@ -1,12 +1,12 @@
 # Payment Types
 
-Finternet supports multiple payment types, each designed for different use cases. Choose the right type based on your business needs.
+Finternet supports programmable payments designed for secure transactions with conditional payment logic. Our payment system is built around Delivery vs Payment (DvP) to ensure both parties are protected.
 
 ## Overview
 
-| Type | Use Case | Conditional Logic | Release Timing |
-|------|----------|-------------------|----------------|
-| **Conditional Payments** | Goods/services delivery | Smart Module | On delivery, time, or milestones |
+| Type | Use Case | Conditional Logic | Settlement Timing |
+|------|----------|-------------------|-------------------|
+| **Delivery vs Payment** | Goods/services delivery | Smart Module | After delivery proof or time lock |
 
 ## Conditional Payments (Smart Module)
 
@@ -27,7 +27,7 @@ Conditional payment logic in the Finternet provided Smart Module, creates a secu
 
 ### Characteristics
 
-- ✅ Funds held in escrow
+- ✅ Funds held with conditional logic
 - ✅ Release on delivery proof
 - ✅ Time-based automatic release
 - ✅ Milestone-based releases
@@ -139,7 +139,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_xxx/escrow/milestones/m
 
 ## Next Steps
 
-- 📖 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) in detail
-- ⏱️ Explore [Time-Based Payouts](guides/time-based-payouts.md)
-- 🎯 Read about [Milestone Payments](guides/milestone-payments.md)
+- 📖 Learn about [Delivery vs Payment](guides/payment-flows/delivery-vs-payment.md) in detail
+- ⏱️ Explore [Time-Based Payouts](guides/payment-flows/time-based-payouts.md)
+- 🎯 Read about [Milestone Payments](guides/payment-flows/milestone-payments.md)
 - 📚 Check the [API Reference](../api-reference/payment-intents/create.md)

@@ -108,7 +108,7 @@ The `settlementDestination` field identifies where funds should be sent:
 const intent = await createPaymentIntent({
   amount: '1000.00',
   currency: 'USDC',
-  type: 'CONDITIONAL',
+  type: 'DELIVERY_VS_PAYMENT',
   settlementMethod: 'OFF_RAMP_MOCK',
   settlementDestination: 'bank_account_123',
 });

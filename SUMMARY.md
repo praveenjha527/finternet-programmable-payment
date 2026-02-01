@@ -15,14 +15,14 @@
 * [Payment Types](concepts/payment-types.md)
 * [Settlement Methods](concepts/settlement-methods.md)
 * [Status & Lifecycle](concepts/status-lifecycle.md)
-* [Escrow Orders](concepts/escrow-orders.md)
+* [Conditional Payments](concepts/conditional-payments.md)
 
 ## Guides
 
 * [Payment Flows](guides/payment-flows.md)
-* [Delivery vs Payment](guides/delivery-vs-payment.md)
-* [Time-Based Payouts](guides/time-based-payouts.md)
-* [Milestone Payments](guides/milestone-payments.md)
+  * [Delivery vs Payment](guides/payment-flows/delivery-vs-payment.md)
+  * [Time-Based Payouts](guides/payment-flows/time-based-payouts.md)
+  * [Milestone Payments](guides/payment-flows/milestone-payments.md)
 * [Dispute Resolution](guides/dispute-resolution.md)
 
 ## API Reference
@@ -32,10 +32,10 @@
   * [Create Payment Intent](api-reference/payment-intents/create.md)
   * [Retrieve Payment Intent](api-reference/payment-intents/retrieve.md)
   * [Confirm Payment Intent](api-reference/payment-intents/confirm.md)
-* [Escrow Orders](api-reference/escrow-orders/get.md)
-  * [Get Escrow Order](api-reference/escrow-orders/get.md)
-  * [Submit Delivery Proof](api-reference/escrow-orders/submit-delivery-proof.md)
-  * [Raise Dispute](api-reference/escrow-orders/raise-dispute.md)
+* [Conditional Payments](api-reference/conditional-payments/get.md)
+  * [Get Conditional Payment](api-reference/conditional-payments/get.md)
+  * [Submit Delivery Proof](api-reference/conditional-payments/submit-delivery-proof.md)
+  * [Raise Dispute](api-reference/conditional-payments/raise-dispute.md)
 * [Milestones](api-reference/milestones/create.md)
   * [Create Milestone](api-reference/milestones/create.md)
   * [Complete Milestone](api-reference/milestones/complete.md)

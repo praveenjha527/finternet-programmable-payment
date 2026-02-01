@@ -262,9 +262,9 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
 
 ## Next Steps
 
-- 🔒 Learn about [Delivery vs Payment](guides/delivery-vs-payment.md) for escrow transactions
-- ⏱️ Explore [Time-Based Payouts](guides/time-based-payouts.md) for scheduled releases
-- 🎯 Check out [Milestone Payments](guides/milestone-payments.md) for project-based payments
+- 🔒 Learn about [Delivery vs Payment](guides/payment-flows/delivery-vs-payment.md) for conditional payment transactions
+- ⏱️ Explore [Time-Based Payouts](guides/payment-flows/time-based-payouts.md) for scheduled releases
+- 🎯 Check out [Milestone Payments](guides/payment-flows/milestone-payments.md) for project-based payments
 - 📚 Read the [API Reference](api-reference/introduction.md) for complete details
 
 ## Common Questions

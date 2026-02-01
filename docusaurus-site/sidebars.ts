@@ -33,17 +33,23 @@ const sidebars: SidebarsConfig = {
         'concepts/payment-types',
         'concepts/settlement-methods',
         'concepts/status-lifecycle',
-        'concepts/escrow-orders',
+        'concepts/conditional-payments',
       ],
     },
     {
       type: 'category',
       label: 'Guides',
       items: [
-        'guides/payment-flows',
-        'guides/delivery-vs-payment',
-        'guides/time-based-payouts',
-        'guides/milestone-payments',
+        {
+          type: 'category',
+          label: 'Payment Flows',
+          items: [
+            'guides/payment-flows',
+            'guides/payment-flows/delivery-vs-payment',
+            'guides/payment-flows/time-based-payouts',
+            'guides/payment-flows/milestone-payments',
+          ],
+        },
         'guides/dispute-resolution',
       ],
     },
@@ -63,11 +69,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Escrow Orders',
+          label: 'Conditional Payments',
           items: [
-            'api-reference/escrow-orders/get',
-            'api-reference/escrow-orders/submit-delivery-proof',
-            'api-reference/escrow-orders/raise-dispute',
+            'api-reference/conditional-payments/get',
+            'api-reference/conditional-payments/submit-delivery-proof',
+            'api-reference/conditional-payments/raise-dispute',
           ],
         },
         {

@@ -1,16 +1,16 @@
-# Payment Flows
+# Introduction
 
 This guide explains the different payment flows available in Finternet and when to use each one.
 
 ## Payment Types Overview
 
-Finternet supports programmable payments with escrow protection:
+Finternet supports programmable payments with conditional payment logic:
 
-1. **DELIVERY_VS_PAYMENT** - Escrow-based payment with delivery verification
+1. **DELIVERY_VS_PAYMENT** - Conditional payment with delivery verification
 
 ## DELIVERY_VS_PAYMENT Flow
 
-Escrow-based payment with delivery verification.
+Conditional payment with delivery verification.
 
 ### When to Use
 
@@ -25,7 +25,7 @@ Escrow-based payment with delivery verification.
 ```
 1. Create Payment Intent (DvP)
    ↓
-2. Escrow Order Created
+2. Conditional Payment Created
    ↓
 3. Buyer Pays (Funds Locked)
    ↓
@@ -84,7 +84,7 @@ Funds released incrementally as milestones are completed.
 
 ## Related
 
-- [Delivery vs Payment](delivery-vs-payment.md)
-- [Time-Based Payouts](time-based-payouts.md)
-- [Milestone Payments](milestone-payments.md)
+- [Delivery vs Payment](payment-flows/delivery-vs-payment.md)
+- [Time-Based Payouts](payment-flows/time-based-payouts.md)
+- [Milestone Payments](payment-flows/milestone-payments.md)
 - [Payment Types](concepts/payment-types.md)

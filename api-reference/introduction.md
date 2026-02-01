@@ -167,5 +167,5 @@ Finternet can send webhooks to notify you of payment events. See [Webhooks](reso
 ## Next Steps
 
 - Browse [Payment Intents API](payment-intents/create.md)
-- Explore [Escrow Orders API](escrow-orders/get.md)
+- Explore [Conditional Payments API](conditional-payments/get.md)
 - Check out [Code Examples](examples/quickstart.md)

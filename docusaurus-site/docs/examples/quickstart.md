@@ -2,6 +2,12 @@
 
 Get started with Finternet in minutes. These examples show common integration patterns using direct API calls.
 
+:::note Sandbox Environment
+🧪 **Development Environment**: All examples use the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+
+🚀 **Production API** will be available once deployed.
+:::
+
 ## Prerequisites
 
 - Node.js 18+ or Python 3.8+
@@ -14,7 +20,7 @@ Get started with Finternet in minutes. These examples show common integration pa
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://api.finternet.com/v1';
+const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -122,7 +128,7 @@ import os
 import requests
 
 API_KEY = os.environ.get('FINTERNET_API_KEY')
-BASE_URL = 'https://api.finternet.com/v1'
+BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1'
 
 def api_request(endpoint, method='GET', data=None):
     url = f'{BASE_URL}{endpoint}'
@@ -198,7 +204,7 @@ print(f'Transaction hash: {confirmed["data"]["transactionHash"]}')
 ### Create Payment Intent
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -214,14 +220,14 @@ curl https://api.finternet.com/v1/payment-intents \
 ### Retrieve Payment Intent
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
 ### Confirm Payment Intent
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -235,7 +241,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123/confirm \
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://api.finternet.com/v1';
+const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {

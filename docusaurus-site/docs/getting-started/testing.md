@@ -1,6 +1,12 @@
-# Testing
+# Testing Your Integration
 
-Learn how to test your Finternet integration safely using test API keys and test scenarios.
+This guide covers testing strategies and common scenarios for Finternet integration.
+
+:::caution Sandbox Testing
+🧪 **Testing Environment**: All testing examples use the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+
+🚀 **Production API** will be available once deployed.
+:::
 
 ## Test vs Live Keys
 
@@ -21,19 +27,19 @@ Create a payment intent and confirm it normally:
 
 ```bash
 # Create intent
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONDITIONAL",
+    "type": "DELIVERY_VS_PAYMENT",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "test_account"
   }'
 
 # Confirm payment
-curl https://api.finternet.com/v1/payment-intents/intent_xxx/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_xxx/confirm \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
@@ -47,7 +53,7 @@ curl https://api.finternet.com/v1/payment-intents/intent_xxx/confirm \
 Test error handling by providing an invalid signature:
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_xxx/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_xxx/confirm \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
@@ -73,7 +79,7 @@ Test state machine validation:
 
 ```bash
 # Try to confirm an already confirmed payment
-curl https://api.finternet.com/v1/payment-intents/intent_xxx/confirm \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_xxx/confirm \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
@@ -123,7 +129,7 @@ Use test account identifiers:
 ```typescript
 // Test payment creation using direct API calls
 async function testPayment() {
-  const response = await fetch('https://api.finternet.com/v1/payment-intents', {
+  const response = await fetch('https://sandbox.pg.api.finternetlab.io/v1/payment-intents', {
     method: 'POST',
     headers: {
       'X-API-Key': process.env.FINTERNET_TEST_API_KEY,
@@ -132,7 +138,7 @@ async function testPayment() {
     body: JSON.stringify({
       amount: '10.00',
       currency: 'USDC',
-      type: 'CONSENTED_PULL',
+      type: 'DELIVERY_VS_PAYMENT',
       settlementMethod: 'OFF_RAMP_MOCK',
       settlementDestination: 'test_account',
     }),
@@ -158,7 +164,7 @@ import os
 import requests
 
 API_KEY = os.environ.get('FINTERNET_TEST_API_KEY')
-BASE_URL = 'https://api.finternet.com/v1'
+BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1'
 
 def test_payment():
     # Create payment intent
@@ -171,7 +177,7 @@ def test_payment():
         json={
             'amount': '10.00',
             'currency': 'USDC',
-            'type': 'CONSENTED_PULL',
+            'type': 'DELIVERY_VS_PAYMENT',
             'settlementMethod': 'OFF_RAMP_MOCK',
             'settlementDestination': 'test_account',
         }

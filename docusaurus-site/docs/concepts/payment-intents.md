@@ -73,7 +73,6 @@ Currency code. Supported: `USDC`, `USDT`, `DAI`.
 
 ### `type`
 Payment type. Options:
-- `CONDITIONAL` - Conditional payment with smart module logic
 - `DELIVERY_VS_PAYMENT` - Conditional payment with delivery verification
 
 ### `settlementMethod`
@@ -155,13 +154,13 @@ See [Status & Lifecycle](status-lifecycle.md) for detailed state transitions.
 ## Creating Payment Intents
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
     "amount": "100.00",
     "currency": "USDC",
-    "type": "CONDITIONAL",
+    "type": "DELIVERY_VS_PAYMENT",
     "settlementMethod": "OFF_RAMP_MOCK",
     "settlementDestination": "bank_account_123"
   }'
@@ -170,7 +169,7 @@ curl https://api.finternet.com/v1/payment-intents \
 ## Retrieving Payment Intents
 
 ```bash
-curl https://api.finternet.com/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key"
 ```
 

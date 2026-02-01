@@ -13,12 +13,28 @@ Time-locked releases automatically release funds after a specified time period. 
 ## Complete Flow
 
 ```typescript
-import Finternet from '@finternet/api';
 import { ethers } from 'ethers';
 
-const finternet = new Finternet({
-  apiKey: process.env.FINTERNET_API_KEY,
-});
+const API_KEY = process.env.FINTERNET_API_KEY;
+const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
+
+async function apiRequest(endpoint: string, options: RequestInit = {}) {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    ...options,
+    headers: {
+      'X-API-Key': API_KEY,
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error?.message || 'API request failed');
+  }
+
+  return response.json();
+}
 
 // 1. Create payment intent with time-locked release
 const createTimeLockedPayment = async (
@@ -27,17 +43,20 @@ const createTimeLockedPayment = async (
 ) => {
   const lockUntil = Math.floor(Date.now() / 1000) + (lockDurationDays * 24 * 60 * 60);
   
-  const intent = await finternet.paymentIntents.create({
-    amount,
-    currency: 'USDC',
-    type: 'DELIVERY_VS_PAYMENT',
-    settlementMethod: 'OFF_RAMP_MOCK',
-    settlementDestination: 'bank_account_123',
-    metadata: {
-      releaseType: 'TIME_LOCKED',
-      timeLockUntil: lockUntil.toString(),
-      deliveryPeriod: lockDurationDays * 24 * 60 * 60,
-    },
+  const intent = await apiRequest('/payment-intents', {
+    method: 'POST',
+    body: JSON.stringify({
+      amount,
+      currency: 'USDC',
+      type: 'DELIVERY_VS_PAYMENT',
+      settlementMethod: 'OFF_RAMP_MOCK',
+      settlementDestination: 'bank_account_123',
+      metadata: {
+        releaseType: 'TIME_LOCKED',
+        timeLockUntil: lockUntil.toString(),
+        deliveryPeriod: lockDurationDays * 24 * 60 * 60,
+      },
+    }),
   });
 
   return intent;
@@ -45,7 +64,7 @@ const createTimeLockedPayment = async (
 
 // 2. Confirm payment (buyer pays)
 const confirmPayment = async (intentId: string) => {
-  const intent = await finternet.paymentIntents.retrieve(intentId);
+  const intent = await apiRequest(`/payment-intents/${intentId}`);
   const typedData = intent.data.typedData;
 
   const provider = new ethers.BrowserProvider(window.ethereum);
@@ -57,16 +76,19 @@ const confirmPayment = async (intentId: string) => {
     typedData.message
   );
 
-  await finternet.paymentIntents.confirm(intentId, {
-    signature,
-    payerAddress: await signer.getAddress(),
+  await apiRequest(`/payment-intents/${intentId}/confirm`, {
+    method: 'POST',
+    body: JSON.stringify({
+      signature,
+      payerAddress: await signer.getAddress(),
+    }),
   });
 };
 
 // 3. Monitor time lock status
 const monitorTimeLock = async (intentId: string) => {
-  const escrowOrder = await finternet.escrowOrders.get(intentId);
-  const timeLockUntil = parseInt(escrowOrder.data.timeLockUntil);
+  const conditionalPayment = await apiRequest(`/payment-intents/${intentId}/conditional-payment`);
+  const timeLockUntil = parseInt(conditionalPayment.data.timeLockUntil);
   const now = Math.floor(Date.now() / 1000);
   
   if (now < timeLockUntil) {
@@ -83,10 +105,10 @@ const monitorTimeLock = async (intentId: string) => {
 
 // 4. Check if funds were released
 const checkReleaseStatus = async (intentId: string) => {
-  const escrowOrder = await finternet.escrowOrders.get(intentId);
+  const conditionalPayment = await apiRequest(`/payment-intents/${intentId}/conditional-payment`);
   
-  if (escrowOrder.data.releasedAt) {
-    const releasedAt = new Date(parseInt(escrowOrder.data.releasedAt) * 1000);
+  if (conditionalPayment.data.releasedAt) {
+    const releasedAt = new Date(parseInt(conditionalPayment.data.releasedAt) * 1000);
     console.log(`Funds released at: ${releasedAt.toISOString()}`);
     return true;
   }
@@ -126,35 +148,55 @@ const runTimeLockedPayment = async () => {
 ## Python Example
 
 ```python
-from finternet import Finternet
+import requests
+import os
 import time
 from datetime import datetime, timedelta
 
-finternet = Finternet(api_key=os.environ['FINTERNET_API_KEY'])
+API_KEY = os.environ['FINTERNET_API_KEY']
+BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1'
+
+def api_request(endpoint, method='GET', data=None):
+    url = f'{BASE_URL}{endpoint}'
+    headers = {
+        'X-API-Key': API_KEY,
+        'Content-Type': 'application/json',
+    }
+    
+    if method == 'POST':
+        response = requests.post(url, headers=headers, json=data)
+    else:
+        response = requests.get(url, headers=headers)
+    
+    if not response.ok:
+        error = response.json()
+        raise Exception(error.get('error', {}).get('message', 'API request failed'))
+    
+    return response.json()
 
 # Create time-locked payment
 def create_time_locked_payment(amount, lock_duration_days):
     lock_until = int(time.time()) + (lock_duration_days * 24 * 60 * 60)
     
-    intent = finternet.payment_intents.create(
-        amount=amount,
-        currency='USDC',
-        type='DELIVERY_VS_PAYMENT',
-        settlement_method='OFF_RAMP_MOCK',
-        settlement_destination='bank_account_123',
-        metadata={
+    intent = api_request('/payment-intents', 'POST', {
+        'amount': amount,
+        'currency': 'USDC',
+        'type': 'DELIVERY_VS_PAYMENT',
+        'settlementMethod': 'OFF_RAMP_MOCK',
+        'settlementDestination': 'bank_account_123',
+        'metadata': {
             'releaseType': 'TIME_LOCKED',
             'timeLockUntil': str(lock_until),
             'deliveryPeriod': lock_duration_days * 24 * 60 * 60,
         }
-    )
+    })
     
     return intent
 
 # Monitor time lock
 def monitor_time_lock(intent_id):
-    escrow_order = finternet.escrow_orders.get(intent_id)
-    time_lock_until = int(escrow_order.data.time_lock_until)
+    conditional_payment = api_request(f'/payment-intents/{intent_id}/conditional-payment')
+    time_lock_until = int(conditional_payment['data']['timeLockUntil'])
     now = int(time.time())
     
     if now < time_lock_until:
@@ -169,14 +211,14 @@ def monitor_time_lock(intent_id):
 
 # Run example
 intent = create_time_locked_payment('1000.00', 30)
-print(f'Payment intent created: {intent.id}')
+print(f'Payment intent created: {intent["id"]}')
 
 # Monitor until release
 while True:
-    if monitor_time_lock(intent.id):
-        escrow_order = finternet.escrow_orders.get(intent.id)
-        if escrow_order.data.released_at:
-            released_at = datetime.fromtimestamp(int(escrow_order.data.released_at))
+    if monitor_time_lock(intent["id"]):
+        conditional_payment = api_request(f'/payment-intents/{intent["id"]}/conditional-payment')
+        if conditional_payment['data'].get('releasedAt'):
+            released_at = datetime.fromtimestamp(int(conditional_payment['data']['releasedAt']))
             print(f'Funds released at: {released_at}')
             break
     
@@ -211,6 +253,6 @@ const contractorPayout = await createTimeLockedPayment('2000.00', 14);
 
 ## Related
 
-- [Time-Based Payouts](guides/time-based-payouts.md)
-- [Escrow Orders](concepts/escrow-orders.md)
+- [Time-Based Payouts](../guides/payment-flows/time-based-payouts.md)
+- [Conditional Payments](../concepts/conditional-payments.md)
 - [API Reference](api-reference/introduction.md)
