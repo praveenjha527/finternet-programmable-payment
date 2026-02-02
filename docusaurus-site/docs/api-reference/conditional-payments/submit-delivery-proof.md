@@ -5,7 +5,7 @@ Submits a delivery proof for a conditional payment, allowing funds to be release
 ## Endpoint
 
 ```
-POST /v1/payment-intents/:intentId/conditional-payment/delivery-proof
+POST /v1/payment-intents/:intentId/escrow/delivery-proof
 ```
 
 ## Authentication
@@ -30,7 +30,7 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/conditional-payment/delivery-proof \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/escrow/delivery-proof \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -178,7 +178,7 @@ const proofHash = ethers.keccak256(
 
 // Submit delivery proof
 const response = await fetch(
-  `https://sandbox.pg.api.finternetlab.io/v1/payment-intents/${intentId}/conditional-payment/delivery-proof`,
+  `https://api.fmm.finternetlab.io/v1/payment-intents/${intentId}/escrow/delivery-proof`,
   {
     method: 'POST',
     headers: {
@@ -214,7 +214,7 @@ proof_hash = Web3.keccak(text=json.dumps(delivery_data)).hex()
 
 # Submit delivery proof
 response = requests.post(
-    f'https://sandbox.pg.api.finternetlab.io/v1/payment-intents/{intent_id}/conditional-payment/delivery-proof',
+    f'https://api.fmm.finternetlab.io/v1/payment-intents/{intent_id}/escrow/delivery-proof',
     headers={
         'X-API-Key': os.environ['FINTERNET_API_KEY'],
         'Content-Type': 'application/json',

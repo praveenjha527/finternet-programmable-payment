@@ -77,14 +77,38 @@ curl https://api.fmm.finternetlab.io/v1/payment-intents \
   "status": "INITIATED",
   "data": {
     "id": "intent_2xYz9AbC123",
+    "object": "payment_intent",
     "status": "INITIATED",
-  "amount": "100.00",
-  "currency": "USDC",
-  "type": "CONDITIONAL",
-  "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
+    "amount": "100.00",
+    "currency": "USDC",
+    "type": "DELIVERY_VS_PAYMENT",
+    "description": "Order #12345",
+    "settlementMethod": "OFF_RAMP_MOCK",
+    "settlementDestination": "bank_account_123",
+    "settlementStatus": "PENDING",
     "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
-    "typedData": { ... },
-    "phases": [ ... ],
+    "chainId": 11155111,
+    "typedData": {
+      "types": {
+        "EIP712Domain": [...],
+        "PaymentIntent": [...]
+      },
+      "domain": {...},
+      "message": {...}
+    },
+    "phases": [
+      {
+        "phase": "SIGNATURE_VERIFICATION",
+        "status": "IN_PROGRESS"
+      }
+    ],
+    "metadata": {
+      "tokenAddress": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+      "contractMerchantId": "4"
+    },
+    "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
+    "estimatedFee": "2.50",
+    "estimatedDeliveryTime": "15s",
     "created": 1704067200,
     "updated": 1704067200
   },

@@ -5,7 +5,7 @@ Raises a dispute for a conditional payment, pausing fund release until the dispu
 ## Endpoint
 
 ```
-POST /v1/payment-intents/:intentId/conditional-payment/dispute
+POST /v1/payment-intents/:intentId/escrow/dispute
 ```
 
 ## Authentication
@@ -29,7 +29,7 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/conditional-payment/dispute \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/escrow/dispute \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -135,7 +135,7 @@ Common values:
 
 ```typescript
 const response = await fetch(
-  `https://sandbox.pg.api.finternetlab.io/v1/payment-intents/${intentId}/conditional-payment/dispute`,
+  `https://api.fmm.finternetlab.io/v1/payment-intents/${intentId}/escrow/dispute`,
   {
     method: 'POST',
     headers: {
@@ -160,7 +160,7 @@ console.log('Dispute raised:', dispute.status);
 import requests
 
 response = requests.post(
-    f'https://sandbox.pg.api.finternetlab.io/v1/payment-intents/{intent_id}/conditional-payment/dispute',
+    f'https://api.fmm.finternetlab.io/v1/payment-intents/{intent_id}/escrow/dispute',
     headers={
         'X-API-Key': os.environ['FINTERNET_API_KEY'],
         'Content-Type': 'application/json',

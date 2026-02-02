@@ -73,7 +73,7 @@ For `DELIVERY_VS_PAYMENT` type, include release type in metadata:
 ### Delivery vs Payment (Time-Locked)
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -104,37 +104,75 @@ Returns a payment intent object wrapped in the standard API response format. **T
   "object": "payment_intent",
   "status": "INITIATED",
   "data": {
-  "id": "intent_2xYz9AbC123",
-  "object": "payment_intent",
-  "status": "INITIATED",
-  "amount": "1000.00",
-  "currency": "USDC",
-  "type": "DELIVERY_VS_PAYMENT",
-  "description": "Order #12345",
-  "settlementMethod": "OFF_RAMP_MOCK",
-  "settlementDestination": "bank_account_123",
-  "settlementStatus": null,
-  "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
-  "transactionHash": null,
-  "chainId": 11155111,
-  "typedData": {
-    "types": {
-      "EIP712Domain": [
-        { "name": "name", "type": "string" },
-        { "name": "version", "type": "string" },
-        { "name": "chainId", "type": "uint256" },
-        { "name": "verifyingContract", "type": "address" }
-      ],
-      "DeliveryVsPayment": [
-        { "name": "intentId", "type": "string" },
-        { "name": "payer", "type": "address" },
-        { "name": "payee", "type": "address" },
-        { "name": "amount", "type": "uint256" },
-        { "name": "token", "type": "address" },
-        { "name": "deadline", "type": "uint256" }
-      ]
+    "id": "intent_2xYz9AbC123",
+    "object": "payment_intent",
+    "status": "INITIATED",
+    "amount": "1000.00",
+    "currency": "USDC",
+    "type": "DELIVERY_VS_PAYMENT",
+    "description": "Order #12345",
+    "settlementMethod": "OFF_RAMP_MOCK",
+    "settlementDestination": "bank_account_123",
+    "settlementStatus": "PENDING",
+    "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
+    "chainId": 11155111,
+    "transactionHash": null,
+    "typedData": {
+      "types": {
+        "EIP712Domain": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "type": "string"
+          },
+          {
+            "name": "chainId",
+            "type": "uint256"
+          },
+          {
+            "name": "verifyingContract",
+            "type": "address"
+          }
+        ],
+        "PaymentIntent": [
+          {
+            "name": "intentId",
+            "type": "bytes32"
+          },
+          {
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "name": "nonce",
+            "type": "uint256"
+          }
+        ]
+      },
+      "domain": {
+        "name": "Finternet Payment Gateway",
+        "chainId": 11155111,
+        "version": "1",
+        "verifyingContract": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318"
+      },
+      "message": {
+        "nonce": 0,
+        "amount": "1000000000",
+        "intentId": "0xf65926ee94a84a01f2e5cfeca732528dc3a8320e74454753ddb81c90d7177f48"
+      }
     },
-    "domain": {
+    "phases": [
+      {
+        "phase": "SIGNATURE_VERIFICATION",
+        "status": "IN_PROGRESS"
+      }
+    ],
+    "metadata": {
+      "tokenAddress": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+      "contractMerchantId": "4"
       "name": "DeliveryVsPayment",
       "version": "1",
       "chainId": 11155111,

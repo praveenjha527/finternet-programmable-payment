@@ -16,42 +16,45 @@ A payment intent is a record that:
 {
   "id": "intent_2xYz9AbC123",
   "object": "payment_intent",
-  "status": "SUCCEEDED",
-  "amount": "100.00",
-  "currency": "USDC",
-  "type": "DELIVERY_VS_PAYMENT",
-  "description": "Order #12345",
-  "settlementMethod": "OFF_RAMP_MOCK",
-  "settlementDestination": "bank_account_123",
-  "settlementStatus": "IN_PROGRESS",
-  "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
-  "transactionHash": "0xabc123def456...",
-  "chainId": 11155111,
-  "typedData": { ... },
-  "signature": "0x1234...",
-  "signerAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
-  "phases": [
-    {
-      "phase": "SIGNATURE_VERIFICATION",
-      "status": "COMPLETED",
-      "timestamp": 1704067200
+  "status": "INITIATED",
+  "data": {
+    "id": "intent_2xYz9AbC123",
+    "object": "payment_intent",
+    "status": "INITIATED",
+    "amount": "1000.00",
+    "currency": "USDC",
+    "type": "DELIVERY_VS_PAYMENT",
+    "description": "Order #ORD-123",
+    "settlementMethod": "OFF_RAMP_MOCK",
+    "settlementDestination": "bank_account_123",
+    "settlementStatus": "PENDING",
+    "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
+    "chainId": 11155111,
+    "transactionHash": null,
+    "typedData": {
+      "types": {
+        "EIP712Domain": [...],
+        "PaymentIntent": [...]
+      },
+      "domain": {...},
+      "message": {...}
     },
-    {
-      "phase": "BLOCKCHAIN_CONFIRMATION",
-      "status": "COMPLETED",
-      "timestamp": 1704067250
+    "phases": [
+      {
+        "phase": "SIGNATURE_VERIFICATION",
+        "status": "IN_PROGRESS"
+      }
+    ],
+    "metadata": {
+      "tokenAddress": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+      "contractMerchantId": "4"
     },
-    {
-      "phase": "SETTLEMENT",
-      "status": "IN_PROGRESS",
-      "timestamp": 1704067300
-    }
-  ],
-  "metadata": {
-    "orderId": "ORD-123",
-    "customerId": "CUST-456"
+    "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
+    "estimatedFee": "2.50",
+    "estimatedDeliveryTime": "15s",
+    "created": 1704067200,
+    "updated": 1704067300
   },
-  "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
   "created": 1704067200,
   "updated": 1704067300
 }

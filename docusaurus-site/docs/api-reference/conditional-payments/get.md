@@ -5,7 +5,7 @@ Retrieves the conditional payment associated with a payment intent.
 ## Endpoint
 
 ```
-GET /v1/payment-intents/:intentId/conditional-payment
+GET /v1/payment-intents/:intentId/escrow
 ```
 
 ## Authentication
@@ -21,7 +21,7 @@ Requires API key authentication.
 ## Request Example
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/conditional-payment \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/escrow \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
@@ -147,7 +147,7 @@ This occurs when the payment intent is not a conditional payment.
 
 ```typescript
 const response = await fetch(
-  `https://sandbox.pg.api.finternetlab.io/v1/payment-intents/${intentId}/conditional-payment`,
+  `https://api.fmm.finternetlab.io/v1/payment-intents/${intentId}/escrow`,
   {
     headers: {
       'X-API-Key': process.env.FINTERNET_API_KEY,
@@ -166,7 +166,7 @@ console.log('Release type:', conditionalPayment.data.releaseType);
 import requests
 
 response = requests.get(
-    f'https://sandbox.pg.api.finternetlab.io/v1/payment-intents/{intent_id}/conditional-payment',
+    f'https://api.fmm.finternetlab.io/v1/payment-intents/{intent_id}/escrow',
     headers={'X-API-Key': os.environ['FINTERNET_API_KEY']}
 )
 

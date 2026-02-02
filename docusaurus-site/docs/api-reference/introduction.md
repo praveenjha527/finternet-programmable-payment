@@ -7,7 +7,7 @@ Welcome to the Finternet Payment Gateway API reference. This section provides de
 All API requests are made to:
 
 ```
-https://sandbox.pg.api.finternetlab.io/v1
+https://api.fmm.finternetlab.io/v1
 ```
 
 :::info Sandbox Environment
@@ -153,7 +153,7 @@ GET /v1/payment-intents?limit=10&starting_after=intent_123
 The API is versioned. The current version is `v1`. Include the version in the URL:
 
 ```
-https://sandbox.pg.api.finternetlab.io/v1/payment-intents
+https://api.fmm.finternetlab.io/v1/payment-intents
 ```
 
 ## Idempotency
