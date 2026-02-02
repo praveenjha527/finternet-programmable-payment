@@ -51,7 +51,7 @@ A payment intent is a record that:
     "orderId": "ORD-123",
     "customerId": "CUST-456"
   },
-  "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
   "created": 1704067200,
   "updated": 1704067300
 }
@@ -124,7 +124,7 @@ Metadata is:
 Every payment intent includes a `paymentUrl` that directs payers to complete payment:
 
 ```
-https://pay.finternet.com/?intent=intent_2xYz9AbC123
+https://pay.finternetlab.io/?intent=intent_2xYz9AbC123
 ```
 
 This URL:

@@ -161,7 +161,7 @@ Returns a payment intent object wrapped in the standard API response format. **T
     "orderId": "ORD-123",
     "customerId": "CUST-456"
   },
-  "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
   "created": 1704067200,
     "updated": 1704067200
   },
@@ -186,7 +186,7 @@ Returns a payment intent object wrapped in the standard API response format. **T
 ```json
 {
   "data": {
-    "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123"
+    "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123"
   }
 }
 ```
@@ -204,7 +204,7 @@ window.open(paymentUrl, '_blank');
 
 The payment URL format is:
 ```
-https://pay.finternet.com/?intent={intentId}
+https://pay.finternetlab.io/?intent={intentId}
 ```
 
 For local development:
@@ -315,7 +315,7 @@ The response follows the standard API response format:
 - EIP-712 typed data is included in `data.typedData` for payer signature
 - For `DELIVERY_VS_PAYMENT` type, an escrow order is created automatically
 - Metadata is stored and returned in all subsequent requests
-- The `paymentUrl` format: `https://pay.finternet.com/?intent={intentId}`
+- The `paymentUrl` format: `https://pay.finternetlab.io/?intent={intentId}`
 
 ## Using the Payment URL
 

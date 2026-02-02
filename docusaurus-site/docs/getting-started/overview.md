@@ -81,7 +81,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   "amount": "100.00",
   "currency": "USDC",
   "type": "CONDITIONAL",
-  "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
     "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
     "typedData": { ... },
     "phases": [ ... ],
