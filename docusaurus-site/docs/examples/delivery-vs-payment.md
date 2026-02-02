@@ -10,7 +10,7 @@ This example shows how to create an escrow order, handle delivery, and release f
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
+const BASE_URL = 'https://api.fmm.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -145,7 +145,7 @@ import time
 from web3 import Web3
 
 API_KEY = os.environ.get('FINTERNET_API_KEY')
-BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1'
+BASE_URL = 'https://api.fmm.finternetlab.io/v1'
 
 def api_request(endpoint, method='GET', data=None):
     url = f'{BASE_URL}{endpoint}'

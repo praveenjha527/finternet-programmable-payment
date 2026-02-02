@@ -48,7 +48,7 @@ To start using Finternet, you'll need an API key:
 3. Copy your **Secret Key** (starts with `sk_`)
 
 :::warning Sandbox Environment
-🧪 **Current Environment**: This documentation uses the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+🧪 **Current Environment**: This documentation uses the **sandbox environment** (`api.fmm.finternetlab.io`).
 
 🚀 **Production API** will be available once deployed.
 :::
@@ -60,7 +60,7 @@ To start using Finternet, you'll need an API key:
 Let's create a simple payment intent to verify your setup:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -u sk_test_your_key_here: \
   -d amount="100.00" \
   -d currency="USDC" \
@@ -81,7 +81,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   "amount": "100.00",
   "currency": "USDC",
   "type": "CONDITIONAL",
-  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
     "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
     "typedData": { ... },
     "phases": [ ... ],
@@ -122,7 +122,7 @@ Every payment goes through these stages:
 Once a payer signs and executes the transaction on the frontend, the payment is automatically confirmed. You can also manually confirm it:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -137,7 +137,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC12
 Poll the payment intent to track its progress:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -u sk_test_your_key_here:
 ```
 

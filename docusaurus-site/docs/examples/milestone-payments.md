@@ -10,7 +10,7 @@ This example shows how to create milestones, complete them sequentially, and aut
 
 ```typescript
 const API_KEY = process.env.FINTERNET_API_KEY;
-const BASE_URL = 'https://sandbox.pg.api.finternetlab.io/v1';
+const BASE_URL = 'https://api.fmm.finternetlab.io/v1';
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {

@@ -3,7 +3,7 @@
 Get started with Finternet in minutes. These examples show common integration patterns using direct API calls.
 
 :::note Sandbox Environment
-🧪 **Development Environment**: All examples use the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+🧪 **Development Environment**: All examples use the **sandbox environment** (`api.fmm.finternetlab.io`).
 
 🚀 **Production API** will be available once deployed.
 :::

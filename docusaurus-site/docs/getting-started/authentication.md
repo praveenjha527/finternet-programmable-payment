@@ -36,7 +36,7 @@ Finternet supports two authentication methods:
 Include your API key in the `X-API-Key` header:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
@@ -45,7 +45,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
 Use the `Authorization` header with Bearer token format:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "Authorization: Bearer sk_test_your_key_here"
 ```
 
@@ -73,7 +73,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
 ```typescript
 const apiKey = process.env.FINTERNET_API_KEY;
 
-const response = await fetch('https://sandbox.pg.api.finternetlab.io/v1/payment-intents', {
+const response = await fetch('https://api.fmm.finternetlab.io/v1/payment-intents', {
   headers: {
     'X-API-Key': apiKey,
     'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ import requests
 api_key = os.environ.get('FINTERNET_API_KEY')
 
 response = requests.get(
-    'https://sandbox.pg.api.finternetlab.io/v1/payment-intents',
+    'https://api.fmm.finternetlab.io/v1/payment-intents',
     headers={'X-API-Key': api_key}
 )
 ```
@@ -98,7 +98,7 @@ response = requests.get(
 ```bash
 export FINTERNET_API_KEY="sk_test_your_key_here"
 
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: $FINTERNET_API_KEY"
 ```
 
@@ -145,7 +145,7 @@ Each API key is scoped to a specific merchant account. When you make a request:
 Test your API key with a simple request:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key_here" \
   -X POST \
   -H "Content-Type: application/json" \
