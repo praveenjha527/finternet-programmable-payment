@@ -46,7 +46,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   "type": "CONDITIONAL",
   "settlementMethod": "OFF_RAMP_MOCK",
   "settlementDestination": "bank_account_123",
-  "paymentUrl": "https://pay.finternet.com/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
   "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
   "typedData": {
     "types": {
@@ -89,7 +89,7 @@ const paymentUrl = response.data.paymentUrl;
 window.location.href = paymentUrl;
 ```
 
-The payment URL format is: `https://pay.finternet.com/?intent={intentId}`
+The payment URL format is: `https://pay.finternetlab.io/?intent={intentId}`
 
 ## Step 2: Redirect User to Payment Page
 
