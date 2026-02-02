@@ -51,7 +51,7 @@ A payment intent is a record that:
     "orderId": "ORD-123",
     "customerId": "CUST-456"
   },
-  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
   "created": 1704067200,
   "updated": 1704067300
 }
@@ -124,7 +124,7 @@ Metadata is:
 Every payment intent includes a `paymentUrl` that directs payers to complete payment:
 
 ```
-https://pay.finternetlab.io/?intent=intent_2xYz9AbC123
+https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123
 ```
 
 This URL:
@@ -154,7 +154,7 @@ See [Status & Lifecycle](status-lifecycle.md) for detailed state transitions.
 ## Creating Payment Intents
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key" \
   -X POST \
   -d '{
@@ -169,7 +169,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
 ## Retrieving Payment Intents
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key"
 ```
 

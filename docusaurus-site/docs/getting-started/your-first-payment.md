@@ -3,7 +3,7 @@
 This guide walks you through creating and processing your first payment with Finternet, from creation to settlement.
 
 :::tip Sandbox Environment
-🧪 **Testing Environment**: All examples in this guide use the **sandbox environment** (`sandbox.pg.api.finternetlab.io`).
+🧪 **Testing Environment**: All examples in this guide use the **sandbox environment** (`api.fmm.finternetlab.io`).
 
 🚀 **Production API** will be available once deployed.
 :::
@@ -17,7 +17,7 @@ We'll create a simple payment intent, confirm it, and track it through the compl
 A payment intent represents a request to collect payment from a payer. Let's create one:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
+curl https://api.fmm.finternetlab.io/v1/payment-intents \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -46,7 +46,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents \
   "type": "CONDITIONAL",
   "settlementMethod": "OFF_RAMP_MOCK",
   "settlementDestination": "bank_account_123",
-  "paymentUrl": "https://pay.finternetlab.io/?intent=intent_2xYz9AbC123",
+  "paymentUrl": "https://pay.fmm.finternetlab.io/?intent=intent_2xYz9AbC123",
   "contractAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318",
   "typedData": {
     "types": {
@@ -89,7 +89,7 @@ const paymentUrl = response.data.paymentUrl;
 window.location.href = paymentUrl;
 ```
 
-The payment URL format is: `https://pay.finternetlab.io/?intent={intentId}`
+The payment URL format is: `https://pay.fmm.finternetlab.io/?intent={intentId}`
 
 ## Step 2: Redirect User to Payment Page
 
@@ -120,7 +120,7 @@ The payer visits the `paymentUrl` and:
 Once the payer has executed the transaction, confirm it with the signature and transaction hash:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
   -H "X-API-Key: sk_test_your_key_here" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -163,7 +163,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC12
 Poll the payment intent to track blockchain confirmation:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
@@ -201,7 +201,7 @@ curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC12
 Settlement happens automatically in the background. Check status again:
 
 ```bash
-curl https://sandbox.pg.api.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
+curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
