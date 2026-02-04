@@ -47,16 +47,9 @@ const createDvPPayment = async (amount: string, orderId: string) => {
   return intent;
 };
 
-// 2. Buyer confirms payment
-const confirmPayment = async (intentId: string, signature: string, payerAddress: string) => {
-  return apiRequest(`/payment-intents/${intentId}/confirm`, {
-    method: 'POST',
-    body: JSON.stringify({
-      signature,
-      payerAddress,
-    }),
-  });
-};
+// 2. Payment is handled via payment URL
+// User is redirected to intent.data.paymentUrl to complete payment
+// Payment processor handles card/bank transfer automatically
 
 // 3. Merchant submits delivery proof
 const submitDeliveryProof = async (
@@ -76,8 +69,6 @@ const submitDeliveryProof = async (
 };
 
 // 4. Generate delivery proof hash
-import { ethers } from 'ethers';
-
 const generateDeliveryProof = (trackingNumber: string, deliveredAt: string) => {
   const deliveryData = {
     trackingNumber,
@@ -85,9 +76,8 @@ const generateDeliveryProof = (trackingNumber: string, deliveredAt: string) => {
     recipient: 'John Doe',
   };
 
-  const proofHash = ethers.keccak256(
-    ethers.toUtf8Bytes(JSON.stringify(deliveryData))
-  );
+  // Generate a simple hash for proof (in production, use proper hashing)
+  const proofHash = '0x' + Buffer.from(JSON.stringify(deliveryData)).toString('hex').padStart(64, '0');
 
   return proofHash;
 };
@@ -98,8 +88,8 @@ const runDvPFlow = async () => {
   const intent = await createDvPPayment('1000.00', 'ORD-123');
   console.log('Payment intent created:', intent.id);
 
-  // Step 2: Buyer confirms (frontend handles this)
-  // ... wallet connection and signature ...
+  // Step 2: Buyer confirms payment via card/bank transfer
+  // Payment is processed by payment processor
 
   // Step 3: Wait for payment confirmation
   let paymentStatus = 'PROCESSING';
@@ -142,7 +132,8 @@ const runDvPFlow = async () => {
 import requests
 import os
 import time
-from web3 import Web3
+import hashlib
+import json
 
 API_KEY = os.environ.get('FINTERNET_API_KEY')
 BASE_URL = 'https://api.fmm.finternetlab.io/v1'
@@ -199,7 +190,8 @@ def generate_delivery_proof(tracking_number, delivered_at):
         'recipient': 'John Doe',
     }
     
-    proof_hash = Web3.keccak(text=str(delivery_data)).hex()
+    # Generate a simple hash for proof (in production, use proper hashing)
+    proof_hash = '0x' + hashlib.sha256(json.dumps(delivery_data, sort_keys=True).encode()).hexdigest()
     return proof_hash
 
 # Run flow

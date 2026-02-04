@@ -64,34 +64,15 @@ console.log('Payment Intent:', intent.id);
 console.log('Payment URL:', intent.data.paymentUrl);
 ```
 
-### Confirm Payment
+### Complete Payment
 
 ```typescript
-import { ethers } from 'ethers';
+// Payment is handled via the payment URL
+// User is redirected to intent.data.paymentUrl to complete payment
+console.log('Redirect user to:', intent.data.paymentUrl);
 
-// Get typed data from payment intent
-const intent = await apiRequest(`/payment-intents/${intentId}`);
-const typedData = intent.data.typedData;
-
-// Sign with wallet
-const provider = new ethers.BrowserProvider(window.ethereum);
-const signer = await provider.getSigner();
-const signature = await signer.signTypedData(
-  typedData.domain,
-  typedData.types,
-  typedData.message
-);
-
-// Confirm payment
-const confirmed = await apiRequest(`/payment-intents/${intentId}/confirm`, {
-  method: 'POST',
-  body: JSON.stringify({
-    signature,
-    payerAddress: await signer.getAddress(),
-  }),
-});
-
-console.log('Transaction hash:', confirmed.data.transactionHash);
+// Payment processor handles card/bank transfer automatically
+// No manual confirmation API call needed
 ```
 
 ### Check Payment Status
@@ -166,37 +147,15 @@ print(f'Payment Intent: {intent["id"]}')
 print(f'Payment URL: {intent["data"]["paymentUrl"]}')
 ```
 
-### Confirm Payment
+### Complete Payment
 
 ```python
-from web3 import Web3
-from eth_account.messages import encode_defunct
+# Payment is handled via the payment URL
+# User is redirected to intent["data"]["paymentUrl"] to complete payment
+print(f'Redirect user to: {intent["data"]["paymentUrl"]}')
 
-# Get typed data
-intent = api_request(f'/payment-intents/{intent_id}')
-typed_data = intent['data']['typedData']
-
-# Sign with wallet
-w3 = Web3(Web3.HTTPProvider('https://sepolia.infura.io/v3/YOUR_KEY'))
-account = w3.eth.account.from_key('YOUR_PRIVATE_KEY')
-
-signature = account.sign_typed_data(
-    domain=typed_data['domain'],
-    types=typed_data['types'],
-    message=typed_data['message']
-)
-
-# Confirm payment
-confirmed = api_request(
-    f'/payment-intents/{intent_id}/confirm',
-    method='POST',
-    data={
-        'signature': signature.signature.hex(),
-        'payerAddress': account.address
-    }
-)
-
-print(f'Transaction hash: {confirmed["data"]["transactionHash"]}')
+# Payment processor handles card/bank transfer automatically
+# No manual confirmation API call needed
 ```
 
 ## cURL
@@ -224,17 +183,13 @@ curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123 \
   -H "X-API-Key: sk_test_your_key_here"
 ```
 
-### Confirm Payment Intent
+### Complete Payment
+
+Payment is handled via the payment URL returned in the payment intent response. Users are redirected to this URL to complete payment with card/bank transfer.
 
 ```bash
-curl https://api.fmm.finternetlab.io/v1/payment-intents/intent_2xYz9AbC123/confirm \
-  -H "X-API-Key: sk_test_your_key_here" \
-  -H "Content-Type: application/json" \
-  -X POST \
-  -d '{
-    "signature": "0x1234...",
-    "payerAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f42318"
-  }'
+# No manual confirmation needed - payment handled via payment URL
+# Users complete payment at the paymentUrl returned in the payment intent
 ```
 
 ## Complete Example: E-commerce Checkout
@@ -277,29 +232,16 @@ const createCheckout = async (cartTotal: string, orderId: string) => {
   window.location.href = intent.data.paymentUrl;
 };
 
-// 2. On payment page, handle wallet connection and payment
+// 2. On payment page, handle payment processing
 const handlePayment = async (intentId: string) => {
   // Get payment intent
   const intent = await apiRequest(`/payment-intents/${intentId}`);
   
-  // Connect wallet
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
+  // For Web2 flow, payment is processed via card/bank transfer
+  // No wallet connection or signing required
   
-  // Sign and confirm
-  const signature = await signer.signTypedData(
-    intent.data.typedData.domain,
-    intent.data.typedData.types,
-    intent.data.typedData.message
-  );
-  
-  await apiRequest(`/payment-intents/${intentId}/confirm`, {
-    method: 'POST',
-    body: JSON.stringify({
-      signature,
-      payerAddress: await signer.getAddress(),
-    }),
-  });
+  // Payment is completed via payment URL - no manual confirmation needed
+  // User is redirected to intent.data.paymentUrl to complete payment
   
   // Poll for confirmation
   const pollInterval = setInterval(async () => {

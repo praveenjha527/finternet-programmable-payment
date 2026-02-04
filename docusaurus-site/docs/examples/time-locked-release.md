@@ -13,8 +13,6 @@ Time-locked releases automatically release funds after a specified time period. 
 ## Complete Flow
 
 ```typescript
-import { ethers } from 'ethers';
-
 const API_KEY = process.env.FINTERNET_API_KEY;
 const BASE_URL = 'https://api.fmm.finternetlab.io/v1';
 
@@ -62,28 +60,10 @@ const createTimeLockedPayment = async (
   return intent;
 };
 
-// 2. Confirm payment (buyer pays)
-const confirmPayment = async (intentId: string) => {
-  const intent = await apiRequest(`/payment-intents/${intentId}`);
-  const typedData = intent.data.typedData;
-
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
-  
-  const signature = await signer.signTypedData(
-    typedData.domain,
-    typedData.types,
-    typedData.message
-  );
-
-  await apiRequest(`/payment-intents/${intentId}/confirm`, {
-    method: 'POST',
-    body: JSON.stringify({
-      signature,
-      payerAddress: await signer.getAddress(),
-    }),
-  });
-};
+// 2. Payment is handled via payment URL
+// User is redirected to intent.data.paymentUrl to complete payment
+// Payment processor handles card/bank transfer automatically
+// No manual confirmation API call needed
 
 // 3. Monitor time lock status
 const monitorTimeLock = async (intentId: string) => {
@@ -122,9 +102,9 @@ const runTimeLockedPayment = async () => {
   const intent = await createTimeLockedPayment('1000.00', 30);
   console.log('Payment intent created:', intent.id);
   
-  // Confirm payment
-  await confirmPayment(intent.id);
-  console.log('Payment confirmed');
+  // User completes payment via payment URL
+  console.log('Redirect user to:', intent.data.paymentUrl);
+  console.log('Payment will be processed automatically');
   
   // Monitor time lock
   const checkInterval = setInterval(async () => {
