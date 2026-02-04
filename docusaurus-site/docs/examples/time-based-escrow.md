@@ -15,8 +15,6 @@ Time-based escrow payments automatically release funds to the merchant after a p
 ## Complete Flow
 
 ```typescript
-import { ethers } from 'ethers';
-
 const API_KEY = process.env.FINTERNET_API_KEY;
 const BASE_URL = 'https://api.fmm.finternetlab.io/v1';
 
@@ -90,9 +88,8 @@ async function monitorTimeLock(intentId: string) {
 // Step 3: Optional Early Delivery Confirmation
 async function submitEarlyDelivery(intentId: string, deliveryData: any) {
   // Even with time-lock, you can submit delivery proof early
-  const proofHash = ethers.keccak256(
-    ethers.toUtf8Bytes(JSON.stringify(deliveryData))
-  );
+  // Generate a simple hash for proof (in production, use proper hashing)
+  const proofHash = '0x' + Buffer.from(JSON.stringify(deliveryData)).toString('hex').padStart(64, '0');
 
   const deliveryProof = await apiRequest(`/payment-intents/${intentId}/escrow/delivery-proof`, {
     method: 'POST',

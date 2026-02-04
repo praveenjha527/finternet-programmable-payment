@@ -14,8 +14,6 @@ Milestone-based payments allow you to release funds incrementally as project mil
 ## Complete Flow
 
 ```typescript
-import { ethers } from 'ethers';
-
 const API_KEY = process.env.FINTERNET_API_KEY;
 const BASE_URL = 'https://api.fmm.finternetlab.io/v1';
 
@@ -117,9 +115,8 @@ async function completeMilestone(intentId: string, milestoneId: string, completi
     reviewNotes: completionData.reviewNotes
   };
 
-  const proofHash = ethers.keccak256(
-    ethers.toUtf8Bytes(JSON.stringify(proofData))
-  );
+  // Generate a simple hash for proof (in production, use proper hashing)
+  const proofHash = '0x' + Buffer.from(JSON.stringify(proofData)).toString('hex').padStart(64, '0');
 
   const result = await apiRequest(
     `/payment-intents/${intentId}/escrow/milestones/${milestoneId}/complete`,
